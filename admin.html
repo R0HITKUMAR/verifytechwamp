@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="subject" content=" ">
+  <meta name="copyright" content=" ">
+  <meta name="revised" content=" " />
+  <meta name="author" content=" " />
+  <link href=" " rel="canonical" />
+
+  <!--( Title )-->
+  <title>Admin | verifyTECHWAMP</title>
+
+  <!--( Favicon )-->
+  <link rel="shortcut icon" href="./assets/img/logo/favicon.png" type="image/x-icon">
+
+  <!--( Google Fonts )-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
+  <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+
+  <!--( Font Awesome Icons )-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!--(Bootstrap CSS)-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!--( Datatable CSS )-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+
+  <!--( Internal Styles )-->
+  <link rel="stylesheet" href="./assets/css/admin.css">
+
+</head>
+
+<body>
+  <!--(Start of Body)-->
+  <div class="wrapper d-flex align-items-stretch">
+    <!--Sidebar -->
+    <nav id="sidebar" class="active">
+      <h1><a href="index.html" class="logo"><img src="./assets/img/logo/icon-light.png" width="60px"></a></h1>
+      <ul class="list-unstyled components mb-5">
+        <li class="active">
+          <a onclick="showdashboard_section()" href="#home"><span class="fa fa-home"></span> Home</a>
+        </li>
+        <li>
+          <a onclick="showstudents_section()" href="#students"><span class="fa fa-users"></span>Students</a>
+        </li>
+        <li>
+          <a onclick="showaddCertificates_section()" href="#addCertificates"><span
+              class="fa fa-certificate"></span>Certificates</a>
+        </li>
+        <li>
+          <a onclick="showaddTemplate_section()" href="#addTemplate"><span class="fa fa-photo"></span>Templates</a>
+        </li>
+        <li>
+          <a onclick="showrecords_section()" href="#records"><span class="fa fa-database"></span>Database</a>
+        </li>
+        <li>
+          <a onclick="showtickets_section()" href="#tickets"><span class="fa fa-question"></span>Tickets</a>
+        </li>
+        <li>
+          <a onclick="showprofile_section()" href="#profile"><span class="fa fa-cog"></span>Profile</a>
+        </li>
+        <li>
+          <a onclick="showhelp_section()" href="#help">Help</a>
+        </li>
+        <li>
+          <a onclick="logoutwithprompt()" href="#logout">Logout</a>
+        </li>
+      </ul>
+      <div class="footer">
+        <p>
+          &copy; TWEC<br>
+          Designed by Rohit Kumar
+        </p>
+      </div>
+    </nav>
+
+    <!--Contents-->
+    <section id="content" class="m-2">
+      <!--Navbar-->
+      <nav class="navbar justify-content-between">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+        <ul style="list-style-type:none;">
+          <li class="nav-item dropdown">
+            <a class="navbar-brand text-decoration-none" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <img src="./assets/img/icon/profile.png" width="35" height="35" class="rounded-circle"><span class="ml-2"
+                style="color:rgb(0, 0, 0)!important;">Admin TWEC</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a onclick="showdashboard_section()" class="dropdown-item" href="#dashboard">Dashboard</a>
+              <a onclick="showprofile_section()" class="dropdown-item" href="#profile">Setting</a>
+              <a onclick="logoutwithprompt()" class="dropdown-item" href="#logout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <center><button id="showCertificate" type="button" class="btn btn-primary d-none" data-toggle="modal"
+          data-target="#exampleModalCenter">
+        </button>
+      </center>
+      <!--Dashboard-->
+      <section id="dashboard-section" class="">
+        <h2 class="ml-4">Dashboard</h2>
+        <br>
+        <div id="counter-section" style="padding-bottom: 30px;">
+          <div class="container">
+            <div class="row">
+              <div class="four col-lg-3 col-md-6 col-12 mb-3">
+                <div class="counter-box colored">
+                  <span class="counter">0</span>
+                  <p>Total Students</p>
+                </div>
+              </div>
+              <div class="four col-lg-3 col-md-6 col-12 mb-3">
+                <div class="counter-box colored">
+                  <span class="counter">0</span>
+                  <p>Total Certificates</p>
+                </div>
+              </div>
+              <div class="four col-lg-3 col-md-6 col-12 mb-3">
+                <div class="counter-box colored"></i>
+                  <span class="counter">0</span>
+                  <p>Total Templates</p>
+                </div>
+              </div>
+              <div class="four col-lg-3 col-md-6 col-12 mb-3">
+                <div class="counter-box colored"></i>
+                  <span class="counter">0</span>
+                  <p>Total Users</p>
+                </div>
+              </div>
+              <div class="four col-lg-3 col-md-6 col-12 mb-3">
+                <div class="counter-box colored">
+                  <span class="counter">0</span>
+                  <p>Total Tickets</p>
+                </div>
+              </div>
+              <div class="four col-lg-3 col-md-6 col-12 mb-3">
+                <div class="counter-box colored"></i>
+                  <span class="counter">0</span>
+                  <p>Total Users</p>
+                </div>
+              </div>
+              <div class="four col-lg-3 col-md-6 col-12 mb-3">
+                <div class="counter-box colored">
+                  <span class="counter">0</span>
+                  <p>Total Tickets</p>
+                </div>
+              </div>
+              <div class="four col-lg-3 col-md-6 col-12 mb-3">
+                <div class="counter-box colored"></i>
+                  <span class="counter">0</span>
+                  <p>Tickets Pending</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Students-->
+      <section id="students-section" class="d-none">
+        <h2 class="ml-4">Students</h2>
+        <div class="container">
+          <!--Buttons-->
+          <div class="row">
+            <div class="col-md-3 col-12">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" onclick="resetStudentForm()"
+                data-toggle="collapse" data-target="#addStudent" aria-expanded="false" aria-controls="addStudent">
+                Add Student
+              </button>
+            </div>
+            <div class="col-md-3 col-7">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" data-toggle="collapse"
+                data-target="#viewStudents" aria-expanded="false" aria-controls="viewStudents">
+                Students
+              </button>
+            </div>
+            <div class="col-md-2 col-5">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Files</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" onclick="showdashboard_section()">Exit</button>
+            </div>
+          </div>
+
+          <!--Form-->
+          <div class="collapse" id="addStudent">
+            <div class="card card-body mb-5 col-12">
+              <div id="StudentFormAlert" class="alert alert-success text-center d-none" role="alert">
+              </div>
+              <form method="post" id="student-form" autocomplete="off" name="student-form">
+                <div class="form-group row">
+                  <div class="col-md-4 col-12">
+                    <label>Students Name</label>
+                    <input type="text" class="form-control" id="sname" placeholder="Student Name*" required>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Student Name must be in Uppercase.</span>
+                    </small>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <label>Branch & Year</label>
+                    <input type="text" class="form-control" id="sby" placeholder="Branch & Year">
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Branch & Year is in format (CSE/2ND)</span>
+                    </small>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <label>Roll No.</label>
+                    <input type="text" class="form-control" id="srollno" placeholder="Roll No." required>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Enter Valid Roll No.</span>
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6 col-12">
+                    <label>Email Address</label>
+                    <input type="email" class="form-control" id="semail" onchange="checkEmail()"
+                      placeholder="Email Address" required>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Enter valid Email ID in lowercase</span>
+                    </small>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <label>Phone No.</label>
+                    <input type="number" class="form-control" id="scontactno" onchange="checkContactNo()"
+                      placeholder="Contact No." required>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Enter Contact No. without Country Code</span>
+                    </small>
+                  </div>
+                </div>
+                <div style="float: right;">
+                  <button type="reset" onclick="resetStudentForm()" class="btn btn-primary">Reset</button>
+                  <button type="button" id="StudentFormUpdateButton" onclick="updateStudent()"
+                    class="btn btn-secondary d-none">Update</button>
+                  <button type="submit" id="StudentFormSubmitButton" class="btn btn-primary">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--Table-->
+        <div class="container">
+          <div class="collapse show" id="viewStudents">
+            <div class="card card-body mb-5">
+              <div class="mb-3 custom-control custom-switch">
+                <input onclick="datatableStudents()" type="checkbox" class="custom-control-input"
+                  id="students-datatable">
+                <label class="custom-control-label" for="students-datatable">Datatable</label>
+              </div>
+              <table class="table table-responsive-lg" id="studentsTable">
+                <thead>
+                  <tr>
+                    <th>S No.</th>
+                    <th>Roll No.</th>
+                    <th>Name</th>
+                    <th>Branch & Year</th>
+                    <th>Email Address</th>
+                    <th>Contact No.</th>
+                    <th>Total</th>
+                    <th>View</th>
+                    <th>Contact</th>
+                    <th>#</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody id="students-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Add Certificates-->
+      <section id="addCertificates-section" class="d-none">
+        <h2 class="ml-4">Certificates</h2>
+        <div class="container">
+          <!--Buttons-->
+          <div class="row">
+            <div class="col-md-3 col-12">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" onclick="" data-toggle="collapse"
+                data-target="#addCertificate" aria-expanded="false" aria-controls="addCertificate">
+                Add Certificate
+              </button>
+            </div>
+            <div class="col-md-3 col-7">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" data-toggle="collapse"
+                data-target="#viewCertificates" aria-expanded="false" aria-controls="viewCertificates">
+                Certificates
+              </button>
+            </div>
+            <div class="col-md-2 col-5">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Files</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" onclick="showdashboard_section()">Exit</button>
+            </div>
+          </div>
+
+          <!--Form-->
+          <div class="collapse" id="addCertificate">
+            <div class="card card-body mb-5 col-12">
+              <div id="CertificateFormAlert" class="alert alert-success text-center d-none" role="alert">
+              </div>
+              <form method="post" id="certificate-form" autocomplete="off" name="certificate-form">
+                <div class="form-group row">
+                  <div class="col-md-6 col-12">
+                    <label for="caddtitle">Certificate Title</label>
+                    <input id="CTID" onchange="addTitle()" type="text" class="form-control" name="city" list="caddTitle"
+                      required>
+                    <datalist id="caddTitle">
+                    </datalist>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Choose Certificate Title.</span>
+                    </small>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <label for="caddRoll">Students Roll No.</label>
+                    <input id="cRoll" onchange="addName()" type="text" class="form-control" name="city" list="caddRoll"
+                      required>
+                    <datalist id="caddRoll">
+                    </datalist>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Choose Student.</span>
+                    </small>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <label for="ctitle">Certificate Title</label>
+                    <input id="ctitle" type="text" class="form-control" readonly>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Certificate Title (automatically)</span>
+                    </small>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <label for="csname">Students Name</label>
+                    <input id="csname" type="text" class="form-control" readonly>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Student Name (automatically)</span>
+                    </small>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <label for="cBY">Branch & Year</label>
+                    <input id="cBY" type="text" class="form-control" readonly>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Branch & Year (automatically)</span>
+                    </small>
+                  </div>
+                </div>
+                <div style="float: right;">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" id="CertificateFormSubmitButton" class="btn btn-primary">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--Table-->
+        <div class="container">
+          <div class="collapse show" id="viewCertificates">
+            <div class="card card-body mb-5">
+              <div class="mb-3 custom-control custom-switch">
+                <input onclick="" type="checkbox" class="custom-control-input" id="certificates-datatable">
+                <label class="custom-control-label" for="certificates-datatable">Datatable</label>
+              </div>
+              <table class="table table-responsive-lg" id="certificatesTable">
+                <thead>
+                  <tr>
+                    <th>S No.</th>
+                    <th>Certificate ID</th>
+                    <th>Certificate Title</th>
+                    <th>Name</th>
+                    <th>Roll No</th>
+                    <th>Branch & Year</th>
+                    <th>Issue Date</th>
+                    <th>View</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="certificates-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Add Templates-->
+      <section id="addTemplate-section" class="d-none">
+        <h2 class="ml-4">Templates</h2>
+        <div class="container">
+          <!--Buttons-->
+          <div class="row">
+            <div class="col-md-3 col-12">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" onclick="resetTemplateForm()"
+                data-toggle="collapse" data-target="#addTemplate" aria-expanded="false" aria-controls="addTemplate">
+                Add Template
+              </button>
+            </div>
+            <div class="col-md-3 col-7">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" data-toggle="collapse"
+                data-target="#viewTemplates" aria-expanded="false" aria-controls="viewTemplates">
+                Templates
+              </button>
+            </div>
+            <div class="col-md-2 col-5">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Files</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" onclick="showdashboard_section()">Exit</button>
+            </div>
+          </div>
+
+          <!--Form-->
+          <div class="collapse" id="addTemplate">
+            <div class="card card-body mb-5 col-12">
+              <div id="TemplateFormAlert" class="alert alert-success text-center d-none" role="alert">
+              </div>
+              <form method="post" id="template-form" autocomplete="off" name="template-form">
+                <div class="form-group row">
+                  <div class="col-md-4 col-12">
+                    <label>Certificate Template No</label>
+                    <input type="text" class="form-control" id="ctno" placeholder="Autogenerated" readonly>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Autogenerated</span>
+                    </small>
+                    <label>Certificate Name</label>
+                    <input type="text" class="form-control" id="ctname" placeholder="Certificate Name*" required>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Certificate Name must be unique.</span>
+                    </small>
+                  </div>
+                  <div class="col-md-8 col-12">
+                    <label>Description</label>
+                    <textarea type="text" rows="6" class="form-control" id="cdescription" placeholder="Text"
+                      required></textarea>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Enter Valid Certificate Description.</span>
+                    </small>
+                  </div>
+                </div>
+                <div style="float: right;">
+                  <button type="reset" onclick="resetTemplateForm()" class="btn btn-primary">Reset</button>
+                  <button type="button" id="TemplateFormUpdateButton" onclick="updateTemplate()"
+                    class="btn btn-secondary d-none">Update</button>
+                  <button type="submit" id="TemplateFormSubmitButton" class="btn btn-primary">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--Table-->
+        <div class="container">
+          <div class="collapse show" id="viewTemplates">
+            <div class="card card-body mb-5">
+              <div class="mb-3 custom-control custom-switch">
+                <input onclick="" type="checkbox" class="custom-control-input" id="templates-datatable">
+                <label class="custom-control-label" for="templates-datatable">Datatable</label>
+              </div>
+              <table class="table table-responsive-lg" id="templatesTable">
+                <thead>
+                  <tr>
+                    <th>S No.</th>
+                    <th>Template ID</th>
+                    <th>Certificate Name</th>
+                    <th>Description</th>
+                    <th>Total Issued</th>
+                    <th>View</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="templates-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Records-->
+      <section id="records-section" class="d-none">
+        <h2 class="ml-4">Records</h2>
+        <div class="container">
+          <!--Buttons-->
+          <div class="row">
+            <div class="col-md-3 col-12">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
+            </div>
+            <div class="col-md-3 col-7">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
+            </div>
+            <div class="col-md-2 col-5">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Files</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" onclick="showdashboard_section()">Exit</button>
+            </div>
+          </div>
+        </div>
+
+        <!--Table-->
+        <div class="container">
+          <div class="card card-body mb-5">
+            <div class="mb-3 custom-control custom-switch">
+              <input onclick="" type="checkbox" class="custom-control-input" id="records-datatable">
+              <label class="custom-control-label" for="records-datatable">Datatable</label>
+            </div>
+            <table class="table table-responsive-lg" id="recordsTable">
+              <thead>
+                <tr>
+                  <th>S No.</th>
+                  <th>Certificate ID</th>
+                  <th>Certificate Title</th>
+                  <th>Name</th>
+                  <th>Roll No</th>
+                  <th>Branch & Year</th>
+                  <th>Issue Date</th>
+                </tr>
+              </thead>
+              <tbody id="records-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!--Tickets-->
+      <section id="tickets-section" class="d-none">
+        <h2 class="ml-4">Tickets</h2>
+        <div class="container">
+          <!--Buttons-->
+          <div class="row">
+            <div class="col-md-3 col-12">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" onclick="" data-toggle="collapse"
+                data-target="#ticketForm" aria-expanded="false" aria-controls="ticketForm">
+                Ticket Form
+              </button>
+            </div>
+            <div class="col-md-3 col-7">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" data-toggle="collapse"
+                data-target="#viewTickets" aria-expanded="false" aria-controls="viewTickets">
+                Tickets
+              </button>
+            </div>
+            <div class="col-md-2 col-5">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Files</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" onclick="showdashboard_section()">Exit</button>
+            </div>
+          </div>
+
+          <!--Form-->
+          <div class="collapse" id="ticketForm">
+            <div class="card card-body mb-5 col-12">
+              <div id="TicketUpdateAlert" class="alert alert-success text-center d-none" role="alert">
+              </div>
+              <form>
+                <div class="form-group row">
+                  <div class="col-md-4 col-12">
+                    <label>Ticket ID</label>
+                    <input id="tid" type="text" class="form-control" readonly>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Autogenerated</span>
+                    </small>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <label>Name</label>
+                    <input id="tname" type="text" class="form-control" readonly>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Filled by User</span>
+                    </small>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <label>Roll No.</label>
+                    <input id="troll" type="text" class="form-control" readonly>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Filled by User</span>
+                    </small>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <label>Message</label>
+                    <textarea id="TDescription" class="form-control" rows="6" placeholder="Description"
+                      readonly></textarea>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Filled by User</span>
+                    </small>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <label>Status</label>
+                    <textarea id="TStatus" class="form-control" rows="6" placeholder="Description"></textarea>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>From Admin</span>
+                    </small>
+                  </div>
+                </div>
+                <div style="float: right;">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" id="updateTicketStatusButton" class="btn btn-primary">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--Table-->
+        <div class="container">
+          <div class="collapse show" id="viewtickets">
+            <div class="card card-body mb-5">
+              <div class="mb-3 custom-control custom-switch">
+                <input onclick="" type="checkbox" class="custom-control-input" id="tickets-datatable">
+                <label class="custom-control-label" for="tikets-datatable">Datatable</label>
+              </div>
+              <table class="table table-responsive-lg" id="ticketsTable">
+                <thead>
+                  <tr>
+                    <th>S No.</th>
+                    <th>Ticket ID</th>
+                    <th>Name</th>
+                    <th>Roll No</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Attachment</th>
+                    <th>#</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody id="tickets-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Profile-->
+      <section id="profile-section" class="d-none">
+        <h2 class="ml-4">Profile</h2>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="card card-body mb-5">
+                <h5 class="text-center mb-3">Change Email / Password</h5>
+                <div id="profileCredentialAlert"></div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="User-Email1" placeholder="Email Address" required
+                    readonly>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="password" id="new-password" class="form-control" placeholder="New Password"
+                    aria-describedby="changePassButton">
+                  <div class="input-group-append">
+                    <button onclick="changePass()" class="btn btn-primary" type="button"
+                      id="changePassButton">Update</button>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="email" id="newemail" class="form-control" placeholder="New Email Address"
+                    aria-describedby="updateemailButton">
+                  <div class="input-group-append">
+                    <button onclick="updateemail()" class="btn btn-primary" type="button"
+                      id="updateemailButton">Update</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-12">
+              <div class="card card-body mb-5">
+                <h5 class="text-center mb-3">Admin Details</h5>
+                <div id="profileUpdateAlert"></div>
+                <h6 style="color: black;">Name</h6>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="new-name">
+                  <div class="input-group-append">
+                    <button onclick="updatename()" id="updatenameButton" class="btn btn-primary"
+                      type="button">Update</button>
+                  </div>
+                </div>
+                <h6 style="color: black;">Roll No.</h6>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="new-phone">
+                  <div class="input-group-append">
+                    <button onclick="updatephone()" id="updatephoneButton" class="btn btn-primary"
+                      type="button">Update</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- File Upload Section -->
+            <div class="col-md-6 col-12">
+              <div class="card card-body mb-5">
+                <h5 class="text-center mb-3">File Upload</h5>
+                <div id="commonfilealert"></div>
+                <div class="form-group">
+                  <input id="file-upload" type="text" class="form-control" list="reflist" required>
+                  <datalist id="reflist">
+                    <option value="Templates">Templates</option>
+                    <option value="Certificates">Certificates</option>
+                  </datalist>
+                </div>
+                <div class="form-group">
+                  <input type="file" id="common-file" />
+                  <input onclick="commonFileUpload()" type="button" class="btn btn-primary btn-sm" style="float: right;"
+                    value="Upload">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Help-->
+      <section id="help-section" class="d-none">
+        <h2 class="ml-4">Profile</h2>
+      </section>
+
+
+      <!--Certificate PopUP-->
+      <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" role="document">
+          <div class="modal-content ">
+            <div class="modal-footer">
+              <a href="" id="pdfdownload" class="btn btn-primary" target="_blank">Download</a>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            <div class="modal-body">
+              <div id="adobe-dc-view"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+
+  <!-- External JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/combine/npm/sweetalert2@11.3.2/dist/sweetalert2.all.min.js,npm/sweetalert2@11.3.2/dist/sweetalert2.min.js,npm/sweetalert2@11.3.2,npm/sweetalert2@11.3.2/dist/sweetalert2.min.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
+  <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
+
+
+
+  <!--Data Tables-->
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+
+  <!--Internal Section-->
+  <!-- <script src="./assets/js/jquery.min.js"></script> -->
+  <script src="./assets/js/dashboard.js"></script>
+  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/firebase.js"></script>
+  <script src="./assets/jspdf/generatePDF.js"></script>
+  <script src="./assets/jspdf/pdf.js"></script>
+
+
+  <!--Admin Functions-->
+  <script src="./assets/jsadmin/sections.js"></script>
+  <script src="./assets/jsadmin/students.js"></script>
+  <script src="./assets/jsadmin/certificates.js"></script>
+  <script src="./assets/jsadmin/template.js"></script>
+  <script src="./assets/jsadmin/records.js"></script>
+  <script src="./assets/jsadmin/tickets.js"></script>
+  <script src="./assets/jsadmin/fileUpload.js"></script>
+  <script src="./assets/jsadmin/profile.js"></script>
+
+</body>
+
+</html>

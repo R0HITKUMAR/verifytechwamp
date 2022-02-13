@@ -1,0 +1,400 @@
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: normal;
+}
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+  color: #3e64ff;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+button {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+}
+
+button:hover,
+button:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  line-height: 1.5;
+  font-weight: 400;
+  font-family: "Poppins", Arial, sans-serif;
+  color: #000;
+}
+
+.ftco-section {
+  padding: 7em 0;
+}
+
+.ftco-no-pt {
+  padding-top: 0;
+}
+
+.ftco-no-pb {
+  padding-bottom: 0;
+}
+
+.heading-section {
+  font-size: 28px;
+  color: #000;
+}
+
+.heading-section small {
+  font-size: 18px;
+}
+
+.img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#content {
+  width: 100%;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn.btn-primary {
+  background: #3e64ff;
+  border-color: #3e64ff;
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus {
+  background: #3e64ff !important;
+  border-color: #3e64ff !important;
+}
+
+.navbar {
+  padding: 0px 20px;
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none !important;
+  border: none;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+/* SideBar */
+#sidebar {
+  min-width: 200px;
+  max-width: 200px;
+  background: #000000;
+  color: #fff;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#sidebar .logo {
+  text-align: center !important;
+  display: block;
+  color: #fff;
+  font-weight: 900;
+  padding: 10px 30px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#sidebar ul.components {
+  padding: 0;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#sidebar ul li {
+  font-size: 16px;
+}
+
+#sidebar ul li>ul {
+  margin-left: 10px;
+}
+
+#sidebar ul li>ul li {
+  font-size: 14px;
+}
+
+/* Links */
+#sidebar ul li a {
+  padding: 10px 30px;
+  display: block;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar ul li a:hover {
+  color: #fff;
+}
+
+#sidebar ul li.active>a {
+  background: transparent;
+  color: #fff;
+}
+
+#sidebar ul li a span {
+  margin-right: 15px;
+}
+
+/* Buttons */
+#sidebar ul li button {
+  padding: 10px 30px;
+  display: block;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar ul li button .fa {
+  margin-right: 15px;
+}
+
+#sidebar ul button .badge {
+  display: block;
+  font-size: 12px;
+}
+
+
+/* SideBar Active */
+#sidebar.active {
+  min-width: 90px;
+  max-width: 90px;
+  text-align: center;
+}
+
+#sidebar.active .logo {
+  padding: 5px 0;
+}
+
+#sidebar.active ul.components li {
+  font-size: 10px;
+}
+
+#sidebar.active ul.components li a {
+  padding: 10px 0;
+}
+
+#sidebar.active ul.components li a span {
+  margin-right: 0;
+  display: block;
+  font-size: 24px;
+}
+
+#sidebar.active ul.components li button {
+  padding: 10px 25px;
+  font-size: 10px;
+  color: white;
+}
+
+#sidebar.active ul.components li button .fa {
+  margin-right: 0;
+  display: block;
+  font-size: 24px;
+}
+
+#sidebar.active ul.components button .badge {
+  margin-left: 35px !important;
+}
+
+#sidebar.active .footer {
+  display: none;
+}
+
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* Dashboard */
+.counter-box {
+  display: block;
+  background: #f6f6f6;
+  padding: 20px 20px 20px;
+  text-align: center;
+  height: 140px !important;
+  overflow: hidden;
+}
+
+.counter-box p {
+  margin: 5px 0 0;
+  padding: 0;
+  color: #909090;
+  font-size: 18px;
+  font-weight: 500
+}
+
+.counter-box i {
+  font-size: 60px;
+  margin: 0 0 15px;
+  color: #d2d2d2
+}
+
+.counter {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #666;
+  line-height: 28px
+}
+
+.counter-box.colored {
+  background: #3acf87
+}
+
+.counter-box.colored p,
+.counter-box.colored i,
+.counter-box.colored .counter {
+  color: #fff
+}
+
+.table_button .fa {
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+  width: 25px;
+}
+
+.footer {
+  padding: 0 30px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #sidebar .logo {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+
+  #sidebar ul.components {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+}
+
+
+@media (max-width: 991.98px) {
+  #sidebar {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+    margin-left: -80px !important;
+  }
+
+  #sidebar img {
+    display: none;
+  }
+
+  #sidebar.active img {
+    display: block;
+    margin-left: 15px;
+  }
+
+  #sidebar ul li a span {
+    display: block;
+  }
+
+  #sidebar.active {
+    margin-left: 0 !important;
+  }
+
+
+  #sidebar ul.components button .badge {
+    display: none;
+  }
+
+  #sidebar.active ul.components button .badge {
+    display: block;
+  }
+
+  #sidebarCollapse span {
+    display: none;
+  }
+
+  .footer {
+    display: none;
+  }
+
+  .card-body {
+    padding: 0.5rem !important;
+  }
+
+  .collapse {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+
+  .container {
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+
+}
+
+
+.table_button .fa {
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+  width: 25px;
+}

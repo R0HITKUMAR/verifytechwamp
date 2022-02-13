@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="subject" content=" ">
+  <meta name="copyright" content=" ">
+  <meta name="revised" content=" " />
+  <meta name="author" content=" " />
+  <link href=" " rel="canonical" />
+
+  <!--( Title )-->
+  <title>User | verifyTECHWAMP</title>
+
+  <!--( Favicon )-->
+  <link rel="shortcut icon" href="./assets/img/logo/favicon.png" type="image/x-icon">
+
+  <!--( Google Fonts )-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
+  <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+
+  <!--( Font Awesome Icons )-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!--(Bootstrap CSS)-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!--( Datatable CSS )-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+
+  <!--( Internal Styles )-->
+  <link rel="stylesheet" href="./assets/css/user.css">
+
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar" class="active">
+      <h1><a href="index.html" class="logo"><img src="./assets/img/logo/icon-light.png" width="60px"></a></h1>
+      <ul class="list-unstyled components mb-5">
+        <li class="active">
+          <a onclick="showdashboard_section()" href="#home"><span class="fa fa-home"></span> Home</a>
+        </li>
+        <li>
+          <a onclick="showmycertificates_section()" href="#my_certificates"><span class="fa fa-certificate"></span> My
+            Certificates</a>
+        </li>
+        <li>
+          <a onclick="showaddCertificates_section()" href="#add_certificates"><span class="fa fa-plus"></span> Add
+            Certificates</a>
+        </li>
+        <li>
+          <a onclick="showtickets_section()" href="#tickets"><span class="fa fa-bug"></span> Tickets</a>
+        </li>
+        <li>
+          <a onclick="showprofile_section()" href="#profile"><span class="fa fa-user"></span> Profile</a>
+        </li>
+        <li>
+          <a onclick="showhelp_section()" href="#help"><span class="fa fa-info"></span> Help</a>
+        </li>
+        <li>
+          <a onclick="logoutwithprompt()" href="#logout"> Logout</a>
+        </li>
+      </ul>
+      <div class="footer">
+        <p>
+          Copyright &copy; NSS ABESEC<br>
+          Designed by Rohit Kumar
+        </p>
+      </div>
+    </nav>
+    <!-- End of Sidebar -->
+
+    <!-- Start of Navbar  -->
+    <section id="content" class="m-2">
+      <nav class="navbar justify-content-between">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-arrow-right"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+        <ul style="list-style-type:none;">
+          <li class="nav-item dropdown">
+            <a class="navbar-brand text-decoration-none" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <img id="user-profile-photo" src="./assets/img/icon/profile.png" width="35" height="35"
+                class="rounded-circle"><span id="user-name-card" class="ml-2"
+                style="color:rgb(0, 0, 0)!important;">Admin NSS (ABESEC)</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#dashboard">Dashboard</a>
+              <a class="dropdown-item" href="#profile">Update Profile</a>
+              <a onclick="logoutwithprompt()" class="dropdown-item" href="#logout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+
+      <!-- Dashboard Section -->
+      <section id="dashboard-section" class="d-none">
+        <h2 class="ml-4">Dashboard</h2>
+
+      </section>
+
+      <!-- My Certificates Section -->
+      <section id="my_certificates_section" class="d-none">
+        <h2 class="ml-4">My Certificates</h2>
+      </section>
+
+      <!-- Add Certificates Section -->
+      <section id="add_certificates_section" class="d-none">
+        <h2 class="ml-4">Add Certificates</h2>
+      </section>
+
+      <!-- Tickets Section -->
+      <section id="tickets_section" class="d-none">
+        <h2 class="ml-4">Tickets</h2>
+        <div class="container">
+          <!--Buttons-->
+          <div class="row">
+            <div class="col-md-3 col-12">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" onclick="" data-toggle="collapse"
+                data-target="#ticketForm" aria-expanded="false" aria-controls="ticketForm">
+                Ticket Form
+              </button>
+            </div>
+            <div class="col-md-3 col-7">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" data-toggle="collapse"
+                data-target="#viewTickets" aria-expanded="false" aria-controls="viewTickets">
+                Tickets
+              </button>
+            </div>
+            <div class="col-md-2 col-5">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Files</a>
+            </div>
+            <div class="col-md-2 col-6">
+              <button class="btn btn-primary btn-block mb-3 btn-sm" onclick="showdashboard_section()">Exit</button>
+            </div>
+          </div>
+
+          <!--Form-->
+          <div class="collapse" id="ticketForm">
+            <div class="card card-body mb-5 col-12">
+              <div id="TicketAlert">
+              </div>
+              <form id="ticket-form">
+                <div class="form-group row">
+                  <div class="col-md-6 col-12">
+                    <label>Name</label>
+                    <input id="u_name" type="text" class="form-control" readonly>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Autofilled as per Data Given during Registration</span>
+                    </small>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <label>Roll No.</label>
+                    <input id="u_roll" type="text" class="form-control" readonly>
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Autofilled as per Data Given during Registration</span>
+                    </small>
+                  </div>
+                  <div class="col-12 mt-2">
+                    <label>Message</label>
+                    <textarea id="u_message" class="form-control" rows="6" placeholder="Description"></textarea>
+                    <!-- <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>From Admin</span>
+                    </small> -->
+                  </div>
+                  <div class="col-6 mt-2" id="fileUploadPart">
+                    <label>Add Attachment</label><br>
+                    <input type="file" id="ticket-file" />
+                    <input onclick="ticketFileUpload()" type="button" class="btn btn-primary btn-sm"
+                      style="float: right;" value="Upload">
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Only .pdf are accepted</span>
+                    </small>
+                  </div>
+                  <div class="d-none">
+                    <input id="t_url" type="text" class="form-control" readonly>
+                  </div>
+                  <div class="col-6 mt-2">
+                    <small class="form-text text-muted">
+                      <span class="text-danger">*</span>
+                      <span>Once Submitted Form can not Changed or Deleted</span>
+                    </small>
+                  </div>
+                </div>
+                <div style="float: right;">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" id="TicketSubmittedButton" class="btn btn-primary">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--Table-->
+        <div class="container">
+          <div class="collapse show" id="viewtickets">
+            <div class="card card-body mb-5">
+              <div class="mb-3 custom-control custom-switch">
+                <input onclick="" type="checkbox" class="custom-control-input" id="tickets-datatable">
+                <label class="custom-control-label" for="tikets-datatable">Datatable</label>
+              </div>
+              <table class="table table-responsive-lg" id="ticketsTable">
+                <thead>
+                  <tr>
+                    <th>S No.</th>
+                    <th>Ticket ID</th>
+                    <th>Message</th>
+                    <th>Attachment</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="tickets-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile Section -->
+      <section id="profile_section" class="d-none">
+        <h2 class="ml-4">Profile</h2>
+      </section>
+
+      <!-- Help Section -->
+      <section id="help_section" class="d-none">
+        <h2 class="ml-4">Help</h2>
+      </section>
+    </section>
+  </div>
+
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+
+  <!-- Internal JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/combine/npm/sweetalert2@11.3.2/dist/sweetalert2.all.min.js,npm/sweetalert2@11.3.2/dist/sweetalert2.min.js,npm/sweetalert2@11.3.2,npm/sweetalert2@11.3.2/dist/sweetalert2.min.js"></script>
+
+  <script src="./assets/js/dashboard.js"></script>
+  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/firebase.js"></script>
+  <script src="./assets/jsuser/profile.js"></script>
+  <script src="./assets/jsuser/sections.js"></script>
+  <script src="./assets/jsuser/ticket.js"></script>
+
+</body>
+
+</html>

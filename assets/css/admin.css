@@ -1,0 +1,30 @@
+@import url("./main.css");
+@import url("./dashboard.css");
+
+/* Modal */
+
+body{
+    font-family: 'Sora', sans-serif;
+}
+.modal-body {
+    padding: 0px !important;
+    margin: 0px !important;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.modal .fa {
+    color: black;
+}
+.counter {
+    margin-top: 15px;
+    font-size: 2rem;
+    font-weight: 900;
+}
+.counter-box p{
+    font-size: 1.2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 900;
+}
+label{
+    font-weight: bolder;
+}
