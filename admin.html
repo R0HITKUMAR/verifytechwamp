@@ -20,22 +20,9 @@
   <!--( Favicon )-->
   <link rel="shortcut icon" href="./assets/img/logo/favicon.png" type="image/x-icon">
 
-  <!--( Google Fonts )-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
-  <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
-
-  <!--( Font Awesome Icons )-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!--(Bootstrap CSS)-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-  <!--( Datatable CSS )-->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-
   <!--( Internal Styles )-->
   <link rel="stylesheet" href="./assets/css/admin.css">
+  <script src="https://kit.fontawesome.com/989bb54246.js"></script>
 
 </head>
 
@@ -60,7 +47,8 @@
           <a onclick="showaddTemplate_section()" href="#addTemplate"><span class="fa fa-photo"></span>Templates</a>
         </li>
         <li>
-          <a onclick="showrecords_section()" href="#records"><span class="fa fa-database"></span>Database</a>
+          <a onclick="showcstore_section()" href="#cstore"><span><img src="./assets/img/cstore/logo-dark.svg"
+                height="40px"></span>CStore</a>
         </li>
         <li>
           <a onclick="showtickets_section()" href="#tickets"><span class="fa fa-question"></span>Tickets</a>
@@ -107,9 +95,15 @@
         </ul>
       </nav>
       <center><button id="showCertificate" type="button" class="btn btn-primary d-none" data-toggle="modal"
-          data-target="#exampleModalCenter">
+          data-target="#certificateModel">
         </button>
       </center>
+
+      <center><button id="showAttachment" type="button" class="btn btn-primary" data-toggle="modal"
+          data-target="#attachmentModel">
+        </button>
+      </center>
+
       <!--Dashboard-->
       <section id="dashboard-section" class="">
         <h2 class="ml-4">Dashboard</h2>
@@ -379,7 +373,8 @@
                 </div>
                 <div style="float: right;">
                   <button type="reset" class="btn btn-secondary">Reset</button>
-                  <button type="submit" id="CertificateFormSubmitButton" class="btn btn-primary">Send</button>
+                  <button type="submit" onclick="issueCertificate()" id="CertificateFormSubmitButton"
+                    class="btn btn-primary">Send</button>
                 </div>
               </form>
             </div>
@@ -503,7 +498,8 @@
                     <th>Description</th>
                     <th>Total Issued</th>
                     <th>View</th>
-                    <th>Action</th>
+                    <th>#</th>
+                    <th>#</th>
                   </tr>
                 </thead>
                 <tbody id="templates-table"></tbody>
@@ -513,64 +509,51 @@
         </div>
       </section>
 
-      <!--Records-->
-      <section id="records-section" class="d-none">
-        <h2 class="ml-4">Records</h2>
+      <!--C Store-->
+      <section id="cstore-section" class="d-none">
+        <h2 class="ml-4">C - Store<span class="badge badge-pill badge-dark ml-2" style="font-size:x-small;">Powered by
+            TECHWAMP Engineering College</span></h2>
+
+        <!--Table-->
         <div class="container">
-          <!--Buttons-->
-          <div class="row">
-            <div class="col-md-3 col-12">
-              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
-            </div>
-            <div class="col-md-3 col-7">
-              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
-            </div>
-            <div class="col-md-2 col-5">
-              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Database</a>
-            </div>
-            <div class="col-md-2 col-6">
-              <a href="#" class="btn btn-primary btn-block mb-3 btn-sm" target="_blank">Files</a>
-            </div>
-            <div class="col-md-2 col-6">
-              <button class="btn btn-primary btn-block mb-3 btn-sm" onclick="showdashboard_section()">Exit</button>
+          <div class="collapse show" id="">
+            <div class="card card-body mb-5">
+              <div class="mb-3 custom-control custom-switch">
+                <input onclick="" type="checkbox" class="custom-control-input" id="cstore-datatable">
+                <label class="custom-control-label" for="cstore-datatable">Datatable</label>
+              </div>
+              <table class="table table-responsive-lg" id="cstoreTable">
+                <thead>
+                  <tr>
+                    <th>S No.</th>
+                    <th>Roll No</th>
+                    <th>Name</th>
+                    <th>Certificate No.</th>
+                    <th>Certificate Title</th>
+                    <th>Issuing Authority</th>
+                    <th>Verify Link</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody id="cstore-table"></tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        <!--Table-->
-        <div class="container">
-          <div class="card card-body mb-5">
-            <div class="mb-3 custom-control custom-switch">
-              <input onclick="" type="checkbox" class="custom-control-input" id="records-datatable">
-              <label class="custom-control-label" for="records-datatable">Datatable</label>
-            </div>
-            <table class="table table-responsive-lg" id="recordsTable">
-              <thead>
-                <tr>
-                  <th>S No.</th>
-                  <th>Certificate ID</th>
-                  <th>Certificate Title</th>
-                  <th>Name</th>
-                  <th>Roll No</th>
-                  <th>Branch & Year</th>
-                  <th>Issue Date</th>
-                </tr>
-              </thead>
-              <tbody id="records-table"></tbody>
-            </table>
-          </div>
-        </div>
       </section>
 
       <!--Tickets-->
       <section id="tickets-section" class="d-none">
         <h2 class="ml-4">Tickets</h2>
         <div class="container">
+        </div>
+        <div class="container">
           <!--Buttons-->
           <div class="row">
             <div class="col-md-3 col-12">
               <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" onclick="" data-toggle="collapse"
-                data-target="#ticketForm" aria-expanded="false" aria-controls="ticketForm">
+                data-target="#ticketForm" aria-expanded="false" aria-controls="ticketForm" disabled>
                 Ticket Form
               </button>
             </div>
@@ -596,9 +579,9 @@
             <div class="card card-body mb-5 col-12">
               <div id="TicketUpdateAlert" class="alert alert-success text-center d-none" role="alert">
               </div>
-              <form>
+              <form id="ticketUpdate">
                 <div class="form-group row">
-                  <div class="col-md-4 col-12">
+                  <div class="col-md-3 col-12">
                     <label>Ticket ID</label>
                     <input id="tid" type="text" class="form-control" readonly>
                     <small class="form-text text-muted">
@@ -614,13 +597,18 @@
                       <span>Filled by User</span>
                     </small>
                   </div>
-                  <div class="col-md-4 col-12">
+                  <div class="col-md-2 col-12">
                     <label>Roll No.</label>
                     <input id="troll" type="text" class="form-control" readonly>
                     <small class="form-text text-muted">
                       <span class="text-danger">*</span>
                       <span>Filled by User</span>
                     </small>
+                  </div>
+                  <div class="col-md-3 col-12">
+                    <label>&nbsp;</label>
+                    <div id="ticket-button">
+                    </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <label>Message</label>
@@ -642,7 +630,8 @@
                 </div>
                 <div style="float: right;">
                   <button type="reset" class="btn btn-secondary">Reset</button>
-                  <button type="submit" id="updateTicketStatusButton" class="btn btn-primary">Send</button>
+                  <button class="btn btn-primary" id="ticketUpdateButton" onclick="updateTicket()">Update</button>
+                  <button type="submit" id="ticketSubmitButton" class="btn btn-primary">Send</button>
                 </div>
               </form>
             </div>
@@ -662,11 +651,12 @@
                   <tr>
                     <th>S No.</th>
                     <th>Ticket ID</th>
+                    <th>Date</th>
                     <th>Name</th>
                     <th>Roll No</th>
-                    <th>Email</th>
                     <th>Message</th>
-                    <th>Attachment</th>
+                    <th>Status</th>
+                    <th>Attach.</th>
                     <th>#</th>
                     <th>#</th>
                   </tr>
@@ -759,17 +749,37 @@
       <!--Help-->
       <section id="help-section" class="d-none">
         <h2 class="ml-4">Profile</h2>
+
       </section>
 
+      <!--Attachment-->
+      <div class="modal fade bd-example-modal-xl" id="attachmentModel" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl" role="document">
+          <div class="modal-content ">
+            <div class="modal-footer">
+              <a href="" id="attachmentdownload" class="btn btn-primary" target="_blank">Open <i
+                  class="fa-solid fa-arrow-up-right-from-square ml-2"></i></a>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close <i
+                  class="fa-solid fa-x ml-2"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!--Certificate PopUP-->
-      <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+      <div class="modal fade bd-example-modal-lg" id="certificateModel" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" role="document">
           <div class="modal-content ">
             <div class="modal-footer">
-              <a href="" id="pdfdownload" class="btn btn-primary" target="_blank">Download</a>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <a href="" id="pdfdownload" class="btn btn-primary" target="_blank">Download <i
+                  class="fa-solid fa-download ml-2"></i></a>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close <i
+                  class="fa-solid fa-x ml-2"></i></button>
             </div>
             <div class="modal-body">
               <div id="adobe-dc-view"></div>
@@ -822,7 +832,7 @@
   <script src="./assets/jsadmin/students.js"></script>
   <script src="./assets/jsadmin/certificates.js"></script>
   <script src="./assets/jsadmin/template.js"></script>
-  <script src="./assets/jsadmin/records.js"></script>
+  <script src="./assets/jsadmin/cstore.js"></script>
   <script src="./assets/jsadmin/tickets.js"></script>
   <script src="./assets/jsadmin/fileUpload.js"></script>
   <script src="./assets/jsadmin/profile.js"></script>

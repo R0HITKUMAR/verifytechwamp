@@ -40,10 +40,6 @@ function resetStudentForm() {
     document.getElementById("srollno").readOnly = false;
     document.getElementById("StudentFormSubmitButton").classList.remove("d-none");
     document.getElementById("StudentFormUpdateButton").classList.add("d-none");
-    Toast.fire({
-        icon: 'success',
-        title: 'Form Reset Successfully.'
-    })
 }
 
 //Student Form Functions
@@ -99,7 +95,7 @@ function getStudentsDetails() {
                     <td>${data.Email}</td>
                     <td>${data.No}</td>
                     <td>
-                        <a href="#" class="table_button" onclick="#"><i class="fa fa-eye"></i></a>
+                        <a onclick="viewStudent('${data.Rollno}')" class="table_button"><i class="fa fa-eye"></i></a>
                     </td>
                     <td>
                         <a href="https://web.whatsapp.com/send?phone=+91${data.ContactNo}" class="table_button" target="_blank"><i class="fa fa-whatsapp"></i></a>
@@ -214,4 +210,77 @@ function deleteStudent(key) {
             )
         }
     })
+}
+
+function viewStudent(ID) {
+    // Get Certificates using Roll No.
+    var Modal = document.getElementById("modalBody");
+    Modal.innerHTML = "";
+    firebase.database().ref('Students/' + ID).on('value', function (snapshot) {
+        data = snapshot.val();
+        var Student = `
+        <div class="container">
+            <div class="card m-5">
+                <div class="card-body" id="userCard">
+                    <h5 class="card-title text-center">${data.Name}</h5>
+                    <div class="row no-gutters">
+                    <div class="col-md-6 col-12 mb-5">
+                        <p class="card-text">
+                        <b>Roll No :</b> ${data.Rollno}<br>
+                        <b>Branch & Year :</b> ${data.BranchYear}<br>
+                        <b>Email Address :</b> ${data.Email}<br>
+                        <b>Phone No. :</b> +91 ${data.ContactNo}<br>
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-12 text-center mb-5">
+                        <b>Total Certificates Issued :</b> ${data.No}<br>
+                    </div>
+                    </div>
+                    <div class="container">
+                        <div class="row" id="popupContents"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+        Modal.innerHTML = Student;
+        if (data.No == 0) {
+            Alert = `
+            <div class="alert alert-danger alert-dismissible fade show text-center mt-5" role="alert">
+                <strong>No Certificates Issued!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            `;
+            document.getElementById("userCard").innerHTML += Alert;
+        }
+    });
+
+    var contents = document.getElementById("popupContents");
+    firebase.database().ref('Certificates').on('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            if (childSnapshot.val().CRollNo == ID) {
+                firebase.database().ref('Students/' + childSnapshot.val().CRollNo).on('value', function (ssnapshot) {
+                    firebase.database().ref('CTemplates/' + childSnapshot.val().CTID).on('value', function (tsnapshot) {
+                        const Data = extend({}, childSnapshot.val(), ssnapshot.val(), tsnapshot.val());
+                        doc = `
+                        <div class="col-lg-6 col-12">
+                            <div class="card text-white bg-info mb-3 text-center">
+                                <div class="card-header">Certificate ID : ${Data.CID}</div>
+                                <div class="card-body">
+                                    <h3 class="card-title text-light">${Data.CName}</h3>
+                                    <p class="card-text">Issued to ${Data.Name} on ${Data.CDate}</p>
+                                    <button data-dismiss="modal" onclick="generatePDFAdmin('${Data.CID}')"
+                                        class="btn btn-outline-warning">View Certificate</button>
+                                </div>
+                            </div>
+                        </div>`;
+                        contents.innerHTML += doc;
+                    });
+                });
+            }
+        });
+    });
+    document.getElementById("showAttachment").click();
 }

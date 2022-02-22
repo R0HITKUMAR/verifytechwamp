@@ -1,5 +1,14 @@
 const { PDFDocument, rgb, degrees } = PDFLib;
-const generatePDF = async (ID,title,img,name,rollno,by,gdate, ddate,to) => {
+const generatePDF = async (ID, title, img, name, rollno, by, gdate, ddate, to) => {
+    swal.fire({
+        title: "Generating PDF...",
+        text: "Please wait...",
+        buttons: false,
+        closeOnClickOutside: false,
+        closeOnEsc: false,
+        icon: "info",
+        allowOutsideClick: false
+    });
 
     // Load a PDFDocument from the existing PDF bytes
     const existingPdfBytes = await fetch("./assets/jspdf/Certificate.pdf").then((res) =>

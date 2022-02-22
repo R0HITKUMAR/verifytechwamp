@@ -1,7 +1,7 @@
 function hideall(){
     document.getElementById('dashboard-section').classList.add("d-none");
     document.getElementById('my_certificates_section').classList.add("d-none");
-    document.getElementById('add_certificates_section').classList.add("d-none");
+    document.getElementById('cstore_section').classList.add("d-none");
     document.getElementById('tickets_section').classList.add("d-none");
     document.getElementById('profile_section').classList.add("d-none");
     document.getElementById('help_section').classList.add("d-none");
@@ -17,9 +17,10 @@ function showmycertificates_section(){
     document.getElementById('my_certificates_section').classList.remove("d-none");
 }
 
-function showaddCertificates_section(){
+function showcstore_section(){
     hideall();
-    document.getElementById('add_certificates_section').classList.remove("d-none");
+    
+    document.getElementById('cstore_section').classList.remove("d-none");
 }
 function showtickets_section(){
     hideall();
@@ -33,3 +34,5 @@ function showhelp_section(){
     hideall();
     document.getElementById('help_section').classList.remove("d-none");
 }
+
+showcstore_section();

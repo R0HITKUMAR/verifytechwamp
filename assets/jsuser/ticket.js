@@ -1,6 +1,6 @@
 $('#ticket-form').submit(function (e) {
     var Alert = document.getElementById("TicketAlert");
-    var ID = "TWECT" + Date.now();
+    var ID = "TWECTK" + Date.now();
     var today = new Date().toLocaleString('en-CA', {
         month: 'short',
         day: 'numeric',
@@ -14,6 +14,7 @@ $('#ticket-form').submit(function (e) {
         Date: today,
         Attachment: $('#t_url').val() || "No Attachment",
         Status: "Pending",
+        Time: " ",
     });
     $('#ticket-form')[0].reset();
     document.getElementById("TicketAlert").classList.remove("d-none");
@@ -45,7 +46,7 @@ function getTicketsDetails() {
                     file = `-`;
                 }
                 else {
-                    file = `<a class="table_button" href="${data.Attachment}" target="_blank"><span class="fa fa-link"></span></a>`;
+                    file = `<a class="table_button" onclick="ShowAttachment('${data.Attachment}')"><i class="fa fa-link"></i></a>`;
                 }
                 row =
                     `<tr>
@@ -53,8 +54,8 @@ function getTicketsDetails() {
                     <td>${data.ID}</td>
                     <td>${data.Date}</td>
                     <td>${data.Message}</td>
-                    <td>${file}</td>
                     <td>${data.Status}</td>
+                    <td>${file}</td>
                 </tr>`;
                 document.getElementById("tickets-table").innerHTML += row;
             }
@@ -64,6 +65,7 @@ function getTicketsDetails() {
 
 function ticketFileUpload() {
     var Alert = document.getElementById("TicketAlert");
+    var button = document.getElementById("ticketFileUploadButton");
     var file = document.getElementById("ticket-file").files[0];
     if (file !== undefined) {
         var storageRef = firebase.storage().ref('Tickets/' + file.name);
@@ -71,6 +73,7 @@ function ticketFileUpload() {
         task.on('state_changed',
             function progress(snapshot) {
                 var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                button.innerHTML = `Uploading <i class="fa-solid fa-spin fa-spinner ml-2"></i>`;
                 AlertText = `
                 <div class="mb-3">
                     <progress value="${percentage}" max="100" style="width:100%;"></progress>
@@ -81,6 +84,7 @@ function ticketFileUpload() {
         );
         task.then(function (snapshot) {
             console.log('File Upload Successfully');
+            button.innerHTML = `Uploaded <i class="fa-solid fa-check ml-2"></i>`;
             storageRef
                 .getDownloadURL()
                 .then(function (url) {
@@ -88,7 +92,7 @@ function ticketFileUpload() {
                     AlertText = `
                 <div class="alert alert-secondary  alert-dismissible fade show mb-1" role="alert">
                     <strong>File Uploaded Successfully</strong>
-                    <a href="${url}" class="btn btn-primary btn-sm" target="_blank" style="float:right">View</a>
+                    <button onclick="ShowAttachment('${url}')" class="btn btn-primary btn-sm" style="float:right">View</button>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -98,6 +102,7 @@ function ticketFileUpload() {
                     document.getElementById("fileUploadPart").classList.add("d-none");
                 })
                 .catch(function (error) {
+                    button.innerHTML = `Error <i class="fa-solid fa-x ml-2"></i>`;
                     AlertText = `
                 <div class="alert alert-secondary  alert-dismissible fade show text-center mb-1" role="alert">
                     <strong>${error.message}</strong>
@@ -120,4 +125,15 @@ function ticketFileUpload() {
                 </div>`;
         Alert.innerHTML = AlertText;
     }
+}
+
+
+function ShowAttachment(url) {
+    var Modal = document.getElementById("modalBodyUser");
+    doc = `<iframe src="${url}" style="width:100%; height:800px;"></iframe>`;
+    Modal.innerHTML = doc;
+    document.getElementById("showAttachmentUser").click();
+
+    const link = document.getElementById("attachmentdownloadUser");
+    link.href = url;
 }

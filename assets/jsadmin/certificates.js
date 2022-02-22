@@ -12,8 +12,8 @@ function enableButton() {
 
 // Select Data
 function loadSelect() {
-    document.getElementById("caddRoll").innerHTML = "";
     firebase.database().ref('Students').on('value', function (snapshot) {
+        document.getElementById("caddRoll").innerHTML = "";
         snapshot.forEach(function (childSnapshot) {
             data = childSnapshot.val();
             key = childSnapshot.key;
@@ -23,13 +23,14 @@ function loadSelect() {
         });
     });
 
-    document.getElementById("caddTitle").innerHTML = "";
+
     firebase.database().ref('CTemplates').on('value', function (snapshot) {
+        document.getElementById("caddTitle").innerHTML = "";
         snapshot.forEach(function (childSnapshot) {
             data = childSnapshot.val();
             key = childSnapshot.key;
             select =
-                `<option value="${data.CID}">${data.CName}</option>`;
+                `<option value="${data.CTID}">${data.CName}</option>`;
             document.getElementById("caddTitle").innerHTML += select;
         });
     });
@@ -79,32 +80,53 @@ function addTitle() {
 // Certificates Form Functions
 $('#certificate-form').submit(function (e) {
     e.preventDefault();
-    var now = Date.now();
-    var today = new Date().toLocaleString('en-CA', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-    });
-    var ID = "TWEC" + now;
-    firebase.database().ref('Certificates/' + ID).set({
-        CID: ID,
-        CTID: $('#CTID').val(),
-        CRollNo: $('#cRoll').val(),
-        CDate: today,
-    });
-    updateCounter($('#CTID').val());
-    updateStudentCounter($('#cRoll').val());
-    getCertificatesDetails();
-    loadSelect();
-    $('#certificate-form')[0].reset();
-    document.getElementById("CertificateFormAlert").classList.remove("d-none");
-    document.getElementById("CertificateFormAlert").innerHTML = "Record Added Successfully!";
-    document.getElementById("CertificateFormSubmitButton").value = "Submitted";
-    Toast.fire({
-        icon: 'success',
-        title: 'Record Added Successfully.'
-    })
 });
+
+function issueCertificate() {
+    var C = 0;
+    var roll = $('#cRoll').val();
+    var template = $('#CTID').val();
+
+    // Check Duplicate
+    firebase.database().ref('Certificates').on('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            if (childSnapshot.val().CRollNo == roll && childSnapshot.val().CTID == template) {
+                C = 1;
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Certificate Already Issued.'
+                })
+            }
+        });
+        if (C == 0) {
+            var now = Date.now();
+            var today = new Date().toLocaleString('en-CA', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+            var ID = "TWEC" + now;
+            firebase.database().ref('Certificates/' + ID).set({
+                CID: ID,
+                CTID: $('#CTID').val(),
+                CRollNo: $('#cRoll').val(),
+                CDate: today,
+            });
+            updateCounter($('#CTID').val());
+            updateStudentCounter($('#cRoll').val());
+            getCertificatesDetails();
+            loadSelect();
+            $('#certificate-form')[0].reset();
+            document.getElementById("CertificateFormAlert").classList.remove("d-none");
+            document.getElementById("CertificateFormAlert").innerHTML = "Record Added Successfully!";
+            document.getElementById("CertificateFormSubmitButton").value = "Submitted";
+            Toast.fire({
+                icon: 'success',
+                title: 'Record Added Successfully.'
+            })
+        }
+    });
+}
 
 // Update Counter
 function updateCounter(ID) {
@@ -133,39 +155,32 @@ function updateStudentCounter(ID) {
 function getCertificatesDetails() {
     firebase.database().ref('Certificates').on('value', function (snapshot) {
         document.getElementById("certificates-table").innerHTML = "";
-        var e = 1;
+        var e = 0;
         snapshot.forEach(function (childSnapshot) {
-            data = childSnapshot.val();
-            key = childSnapshot.key;
             // Get User Details
-            firebase.database().ref('Students/' + data.CRollNo).on('value', function (snapshot1) {
-                localStorage.setItem("Student_Name", snapshot1.val().Name);
-                localStorage.setItem("Branch_Year", snapshot1.val().BranchYear);
+            firebase.database().ref('Students/' + childSnapshot.val().CRollNo).on('value', function (ssnapshot) {
+                firebase.database().ref('CTemplates/' + childSnapshot.val().CTID).on('value', function (tsnapshot) {
+                    const Data = extend({}, childSnapshot.val(), ssnapshot.val(), tsnapshot.val());
+                    Key = Data.CID;
+                    var row =
+                        `<tr>
+                            <td>${++e}</td>
+                            <td>${Data.CID}</td>
+                            <td>${Data.CName}</td>
+                            <td>${Data.Name}</td>
+                            <td>${Data.CRollNo}</td>
+                            <td>${Data.BranchYear}</td>
+                            <td>${Data.CDate}</td>
+                            <td>
+                                <a href="#" class="table_button" onclick="generatePDFAdmin('${Key}')"><i class="fa fa-eye"></i></a>
+                            </td>
+                            <td>
+                                <a href="#" class="table_button" onclick="deleteCertificate('${Key}')"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>`;
+                    document.getElementById("certificates-table").innerHTML += row;
+                });
             });
-            // Get Template Details
-            firebase.database().ref('CTemplates/' + data.CTID).on('value', function (snapshot2) {
-                localStorage.setItem("Template_Name", snapshot2.val().CName);
-            });
-            var SName = localStorage.getItem("Student_Name");
-            var TName = localStorage.getItem("Template_Name");
-            var BY = localStorage.getItem("Branch_Year");
-            row =
-                `<tr>
-                    <td>${e}</td>
-                    <td>${data.CID}</td>
-                    <td>${TName}</td>
-                    <td>${SName}</td>
-                    <td>${data.CRollNo}</td>
-                    <td>${BY}</td>
-                    <td>${data.CDate}</td>
-                    <td>
-                        <a href="#" class="table_button" onclick="generatePDFAdmin('${data.CID}')"><i class="fa fa-eye"></i></a>
-                    </td>
-                    <td>
-                        <a href="#" class="table_button" onclick="deleteCertificate('${key}')"><i class="fa fa-trash"></i></a>
-                    <td>
-                </tr>`;
-            document.getElementById("certificates-table").innerHTML += row;
         });
     });
 }
@@ -219,7 +234,7 @@ function deleteCertificate(key) {
             firebase.database().ref('Students/' + roll).update({
                 No: count
             });
-            getCertificatesDetails()
+            getCertificatesDetails();
             loadSelect();
         } else if (
             result.dismiss === Swal.DismissReason.cancel

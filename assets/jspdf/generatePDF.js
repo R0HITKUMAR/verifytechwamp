@@ -6,22 +6,14 @@ function generatePDFAdmin(ID) {
         year: 'numeric'
     });
     firebase.database().ref('Certificates/' + ID).on('value', function (snapshot) {
-        data = snapshot.val();
-        // Retrive the data from the database
-        firebase.database().ref('Students/' + data.CRollNo).on('value', function (snap) {
-            localStorage.setItem('SName', snap.val().Name);
-            localStorage.setItem('SBranch', snap.val().BranchYear);
+        firebase.database().ref('Students/' + snapshot.val().CRollNo).on('value', function (ssnapshot) {
+            firebase.database().ref('CTemplates/' + snapshot.val().CTID).on('value', function (tsnapshot) {
+                const Data = extend({}, snapshot.val(), ssnapshot.val(), tsnapshot.val());
+                console.log(Data)
+                var img = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=verifytechwamp.ml?no=${ID}`;
+                generatePDF(ID, Data.CDescription, img, Data.Name, Data.CRollNo, Data.BranchYear, Data.CDate, today, to);
+            });
         });
-        firebase.database().ref('CTemplates/' + data.CTID).on('value', function (snap) {
-            localStorage.setItem('Ctitle', snap.val().CDescription);
-        });
-        var Ctitle = localStorage.getItem('Ctitle');
-        var SName = localStorage.getItem('SName');
-        var CBranch = localStorage.getItem('SBranch');
-
-        var img = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=verifytechwamp.ml?no=${ID}`;
-        generatePDF(ID, Ctitle, img, SName, data.CRollNo, CBranch, data.CDate, today, to);
-
     });
 }
 
@@ -35,13 +27,9 @@ function generatePDFTemplate(CTID) {
     });
 
     firebase.database().ref('CTemplates/' + CTID).on('value', function (snapshot) {
-        localStorage.setItem('Ctitle', snapshot.val().CDescription);
+        var img = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=verifytechwamp.ml?no=${ID}`;
+        generatePDF(ID, snapshot.val().CDescription, img, "Rohit Kumar", "2019B101051", "CSE/3RD", today, today, to);
     });
-    var title = localStorage.getItem('Ctitle');
-    localStorage.removeItem('Ctitle');
-    var img = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=verifytechwamp.ml?no=${ID}`;
-    generatePDF(ID, title, img, "Rohit Kumar", "2019B101051", "CSE/3RD", today, today, to);
-
 }
 
 function displayToAdmin(ID, pdfDataUri, pdfBytes) {
@@ -50,6 +38,8 @@ function displayToAdmin(ID, pdfDataUri, pdfBytes) {
         content: { location: { url: pdfDataUri } },
         metaData: { fileName: "Certificates.pdf" }
     }, { embedMode: "IN_LINE" });
+
+    swal.close();
     document.getElementById("showCertificate").click();
 
     // Save the PDF to a file
@@ -58,3 +48,4 @@ function displayToAdmin(ID, pdfDataUri, pdfBytes) {
     link.href = URL.createObjectURL(blob);
     link.download = `Certificate [${ID}]`;
 }
+

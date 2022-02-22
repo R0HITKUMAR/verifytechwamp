@@ -3,7 +3,7 @@ function hideall() {
     document.getElementById('students-section').classList.add("d-none");
     document.getElementById('addCertificates-section').classList.add("d-none");
     document.getElementById('addTemplate-section').classList.add("d-none");
-    document.getElementById('records-section').classList.add("d-none");
+    document.getElementById('cstore-section').classList.add("d-none");
     document.getElementById('tickets-section').classList.add("d-none");
     document.getElementById('profile-section').classList.add("d-none");
     document.getElementById('help-section').classList.add("d-none");
@@ -24,9 +24,9 @@ function showaddTemplate_section() {
     hideall();
     document.getElementById('addTemplate-section').classList.remove("d-none");
 }
-function showrecords_section() {
+function showcstore_section() {
     hideall();
-    document.getElementById('records-section').classList.remove("d-none");
+    document.getElementById('cstore-section').classList.remove("d-none");
 }
 function showtickets_section() {
     hideall();
@@ -40,4 +40,3 @@ function showhelp_section() {
     hideall();
     document.getElementById('help-section').classList.remove("d-none");
 }
-

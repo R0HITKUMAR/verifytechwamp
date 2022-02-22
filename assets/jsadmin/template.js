@@ -18,7 +18,7 @@ $('#template-form').submit(function (e) {
     var now = Date.now();
     var ID = "TWECT" + now;
     firebase.database().ref('CTemplates/' + ID).set({
-        CID: ID,
+        CTID: ID,
         CName: $('#ctname').val(),
         CDescription: $('#cdescription').val(),
         CIssued: 0,
@@ -44,15 +44,17 @@ function getTemplateDetails() {
             row =
                 `<tr>
                     <td>${e}</td>
-                    <td>${data.CID}</td>
+                    <td>${data.CTID}</td>
                     <td>${data.CName}</td>
                     <td>${data.CDescription}</td>
                     <td>${data.CIssued}</td>
                     <td>
-                        <a href="#" class="table_button" onclick="generatePDFTemplate('${data.CID}')"><i class="fa fa-eye"></i></a>
+                        <a href="#" class="table_button" onclick="generatePDFTemplate('${key}')"><i class="fa fa-eye"></i></a>
                     </td>
                     <td>
                         <a href="#" class="table_button" onclick="editTemplate('${key}')"><i class="fa fa-edit"></i></a>
+                    </td>
+                    <td>
                         <a href="#" class="table_button" onclick="deleteTemplate('${key}')"><i class="fa fa-trash"></i></a>
                     <td>
                 </tr>`;
@@ -70,7 +72,7 @@ function editTemplate(key) {
     }, 500);
     firebase.database().ref('CTemplates/' + key).on('value', function (snapshot) {
         data = snapshot.val();
-        document.getElementById("ctno").value = data.CID;
+        document.getElementById("ctno").value = data.CTID;
         document.getElementById("ctname").value = data.CName;
         document.getElementById("cdescription").value = data.CDescription;
         document.getElementById("TemplateFormSubmitButton").classList.add("d-none");

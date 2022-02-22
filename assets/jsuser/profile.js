@@ -7,6 +7,9 @@ firebase.auth().onAuthStateChanged((user) => {
     var Roll_No = user.photoURL;
     document.getElementById("u_roll").value = Roll_No;
     document.getElementById("u_name").value = Name;
+    document.getElementById("cstore_roll").value = Roll_No;
+    document.getElementById("cstore_name").value = Name;
+    document.getElementById("user-name-card").innerHTML = Name + "/" + Roll_No;
 })
 
 // Logout Function with Prompt
