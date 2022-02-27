@@ -2,19 +2,531 @@
 <html lang="en">
 
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="subject" content=" ">
+    <meta name="copyright" content=" ">
+    <meta name="revised" content=" " />
+    <meta name="author" content=" " />
+    <link href=" " rel="canonical" />
+    <!-- Title -->
+    <title>Home | verifyTECHWAMP</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./assets/img/logo-dark.png" type="image/x-icon">
+
+    <!--CSS CDN-->
+    <!-- External CSS -->
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <link href="./assets/css/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="./assets/css/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="./assets/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="./assets/css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
 </head>
 
 <body>
-    <center>
-        <a href="login.html">Login</a><br>
-        <a href="admin.html">Admin</a><br>
-        <a href="user.html">User</a>
-    </center>
+    <!--Preloader-->
+    <div id="preloader" class="text-center">
+        <div id="loading">
+        </div>
+    </div>
+    <!--End Preloader-->
 
+    <!--Navbar-->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="./assets/img/logo-full-dark.png" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="margin-right-nav">
+                            <a class="page-scroll" href="index.html">Home</a>
+                        </li>
+                        <li class="margin-right-nav">
+                            <a class="page-scroll" href="https://abes.ac.in">About</a>
+                        </li>
+                        <li class="margin-right-nav">
+                            <a class="page-scroll" href="#contact">Contact</a>
+                        </li>
+                        <li class="margin-right-nav">
+                            <a class="page-scroll" href="login.html">Login <small>(Old)</small></a>
+                        </li>
+                        <li class="margin-right-nav">
+                            <a class="page-scroll" href="https://beta.verifytechwamp.ml/login">Login <small>(New)</small></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Navbar-->
+
+    <!--Header-->
+    <header>
+        <div class="container">
+            <div class="header-content row">
+                <div class="col-12">
+                    <h1 class="wow bounceIn animated text-center" data-wow-delay=".40s">TECHWAMP Engineering College</h1>
+                    <h3 class="wow bounceIn animated text-center" data-wow-delay=".50s">CERTIFICATES VERIFICATON SYSTEM
+                    </h3>
+                    <p class="wow bounceIn animated text-center" data-wow-delay=".60s">Please Search Using Certificate
+                        No. mentioned
+                        on your Certificate
+                    </p>
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="search-certificateno"
+                                placeholder="Enter Certificate No."  style="text-transform:uppercase">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <button onclick="getcertificatesdetails()"
+                            class="text-center btn btn-primary btn-block">Search</button>
+                    </div>
+                </div>
+                <!-- <button onclick="getcertificatesdetails()"
+                    class="btn btn-primary btn-lg btn-ornge wow bounceIn animated" data-wow-delay="1s"><i
+                        class="hbtn"></i> <span>Search</span> <i class="fa fa-cloud-download"></i>
+                </button> -->
+            </div>
+        </div>
+    </header>
+    <!--End Header-->
+
+    <!--Guest Results-->
+    <section id="results-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" style="margin-top: 50px;display: none;" id="resultsforno"></div>
+            </div>
+            <div id="search-status" class="text-center mb-5">
+                <div id="spinners" style="display: none;padding: 10px 0px;">
+                    <div class="spinner-grow text-muted"></div>
+                    <div class="spinner-grow text-primary"></div>
+                    <div class="spinner-grow text-success"></div>
+                    <div class="spinner-grow text-info"></div>
+                    <div class="spinner-grow text-warning"></div>
+                    <div class="spinner-grow text-danger"></div>
+                    <div class="spinner-grow text-secondary"></div>
+                    <div class="spinner-grow text-dark"></div>
+                    <div class="spinner-grow text-light"></div>
+                </div>
+                <center>
+                    <img id="norecordfound" src="./assets/img/no-record-found.svg" width="300px" style="display: none;">
+                    <img id="verified" src="./assets/img/verified.svg" width="300px" style="display: none;">
+                </center>
+            </div>
+        </div>
+    </section>
+    <!--End Guest Results-->
+
+    <!--Access Features-->
+    <section id="about" class="">
+        <div class="container">
+            <span class="angle2"></span>
+            <span class="angle"></span>
+            <div class="row">
+                <div class="col-lg-4 col-12 wow fadeInLeft animated" data-wow-delay=".5s">
+                    <h1><span>HEY THERE!</span> WELCOME TO CERTIFICATE VERIFICATION @TECHWAMP</h1>
+                </div>
+                <div class="col-lg-8 col-12 wow fadeInRight animated" data-wow-delay=".5s">
+                    <h2>WEBSITE FOR MAINTAINING CERTIFICATES ONLINE</h2>
+                    <h4>Login User</h4>
+
+                    <ul style="list-style-type:square">
+                        <li>Search Certificates using Roll No, Email Name,Certificate No, Certificate Title etc</li>
+                        <li>Issue Tickets some Error in Data and Track Tickets Status</li>
+                        <li>Update Profile like Email Address, Password and Delete Profile</li>
+                        <li>View His/Her Certificates</li>
+                    </ul>
+                    <br>
+                    <h4>Guest User</h4>
+                    <ul style="list-style-type:square">
+                        <li>Search Certificates using Certificate No.</li>
+                    </ul><br>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Access Features-->
+
+    <!--Features-->
+    <section id="how-it-works" class="parallax">
+        <div class="container" style="margin-bottom: 100px;">
+            <span class="angle2"></span>
+            <span class="angle"></span>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated headding" data-wow-delay=".5s">
+                    <h2>How it <span>works</span></h2>
+                    <p>Please Login OR Signup to Access Our Features</p>
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10 col-md-10 wow fadeInLeft animated textright"
+                            data-wow-delay=".5s">
+                            <h3>Secure Login</h3>
+                            <p>Secure Login using Firebase (by Google) & User can Login or SignUp to Acccess our
+                                Features</p>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 wow fadeInRight animated" data-wow-delay=".5s">
+                            <i class="fa fa-apple iconfont"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10 col-md-10 wow fadeInLeft animated textright"
+                            data-wow-delay=".6s">
+                            <h3>Tickets Requests</h3>
+                            <p>Generate Tickets & Get Response within 24 Hrs.</p>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 wow fadeInRight animated" data-wow-delay=".6s">
+                            <i class="fa fa-rocket iconfont"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10 col-md-10 wow fadeInLeft animated textright"
+                            data-wow-delay=".7s">
+                            <h3>File Upload</h3>
+                            <p>Upload File & Share in Forms</p>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 wow fadeInRight animated" data-wow-delay=".7s">
+                            <i class="fa fa-film iconfont"></i>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated textcenter" data-wow-delay=".4s">
+                    <img src="./assets/img/slide-bg.png" alt="slide-bg" />
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 wow fadeInLeft animated" data-wow-delay=".5s">
+                            <i class="fa fa-android iconfont2"></i>
+                        </div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 wow fadeInRight animated textleft"
+                            data-wow-delay=".5s">
+                            <h3>Secure</h3>
+                            <p>Secure, Fast & Reliable data using Firebase & Google</p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 wow fadeInLeft animated" data-wow-delay=".6s">
+                            <i class="fa fa-css3 iconfont2"></i>
+                        </div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 wow fadeInRight animated textleft"
+                            data-wow-delay=".6s">
+                            <h3>Search</h3>
+                            <p>Search Using Certificate No., Name, Title, Email etc through Login</p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 wow fadeInLeft animated" data-wow-delay=".7s">
+                            <i class="fa fa-users iconfont2"></i>
+                        </div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 wow fadeInRight animated textleft"
+                            data-wow-delay=".7s">
+                            <h3>My Certificates</h3>
+                            <p>View Your all Certificates</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Features-->
+
+    <!--Screenshots-->
+    <section id="Screenshots" class="">
+        <div class="container">
+            <span class="angle2"></span>
+            <span class="angle"></span>
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated headding" data-wow-delay=".1s">
+                    <h2>Screen <span>Shots</span></h2>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 wow zoomIn animated textright" data-wow-delay=".1s">
+                            <div class="span12">
+
+                                <div id="owl-demo" class="owl-carousel">
+                                    <div class="item">
+                                        <div class="imghover" data-toggle="modal" data-target="#exampleModal"
+                                            data-whatever="@mdo"><img src="./assets/img/owl1.jpg" alt="Owl Image">
+                                            <div class="hover-bg"><i class="fa fa-camera camera"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="imghover" data-toggle="modal" data-target="#exampleModa2"
+                                            data-whatever="@mdo">
+                                            <img src="./assets/img/owl2.jpg" alt="Owl Image">
+                                            <div class="hover-bg"><i class="fa fa-camera camera"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="imghover" data-toggle="modal" data-target="#exampleModa3"
+                                            data-whatever="@mdo">
+                                            <img src="./assets/img/owl3.jpg" alt="Owl Image">
+                                            <div class="hover-bg"><i class="fa fa-camera camera"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="imghover" data-toggle="modal" data-target="#exampleModa4"
+                                            data-whatever="@mdo">
+                                            <img src="./assets/img/owl4.jpg" alt="Owl Image">
+                                            <div class="hover-bg"><i class="fa fa-camera camera"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel">
+
+                            <div class="modal-dialog" role="document">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <img src="./assets/img/owl1.jpg" alt="Owl Image" width="100%">
+
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="exampleModa2" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabe2">
+
+                            <div class="modal-dialog" role="document">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <img src="./assets/img/owl2.jpg" alt="Owl Image" width="100%">
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="exampleModa3" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabe3">
+                            <div class="modal-dialog" role="document">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <img src="./assets/img/owl3.jpg" alt="Owl Image" width="100%">
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="exampleModa4" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabe4">
+                            <div class="modal-dialog" role="document">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <img src="./assets/img/owl4.jpg" alt="Owl Image" width="100%">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Screenshots-->
+
+    <!--Developers-->
+    <section id="Price" class="">
+        <div class="container">
+            <span class="angle2"></span>
+            <span class="angle"></span>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 wow zoomIn animated headding" data-wow-delay=".1s">
+                    <h2>Meet the <span>Developers</span></h2>
+                    <p>This Project "Certificate Verification System" is Created as a demo Project for TECHWAMP Engineering
+                        College as for Trails Purpose Only (i.e Mini Project Only).</p>
+                </div><br>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-2"></div>
+                <div class="col-lg-4 col-md-4 col-8 wow fadeInLeft animated">
+                    <div class="price-wrapper ">
+                        <h3 class="price-title">Rohit Kumar</h3>
+                        <div class="price">
+                            <div class="value-box">
+                                <div class="value-box-content">
+                                    <span class="value">
+                                        <i></i><span class="number"><img src="./assets/img/rohit_kumar.png"
+                                                width="200px" style="border-radius: 50%;"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content-box">
+                                <ul>
+                                    <li>(Student)</li>
+                                </ul>
+                            </div>
+                            <div class="sign-box">
+                                <a href="https://rohitkumar.ml"><span>Connect</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-8 wow fadeInLeft animated">
+                    <div class="price-wrapper ">
+                        <h3 class="price-title">Lavi Badwal</h3>
+                        <div class="price">
+                            <div class="value-box">
+                                <div class="value-box-content">
+                                    <span class="value">
+                                        <i></i><span class="number"><img src="./assets/img/lavi_badwal.jpg"
+                                                width="200px" style="border-radius: 50%;"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content-box">
+                                <ul>
+                                    <li>(Student)</li>
+                                </ul>
+                            </div>
+                            <div class="sign-box">
+                                <a href="https://rohitkumar.ml"><span>Connect</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-2"></div>
+            </div>
+            <div class="col-12">
+                <a href="" class="btn btn-primary btn-block">View Project</a>
+            </div>
+        </div>
+    </section>
+    <!--End Developers-->
+
+    <!--Contact-->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated headding" data-wow-delay=".1s">
+                    <h2>Contact <span>Us</span></h2>
+                    <p>TECHWAMP EC is the leading institution in BKTU. It has achieved excellence in academics by
+                        consistently securing the First position for consecutively 8 semesters in University academic
+                        result. The placement records for the year 2018-19 are the highest with 1200+ job offers for
+                        Engineering and Management students.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated" data-wow-delay=".6s">
+                    <section id="text-15" class="widget widget_text">
+                        <h3 class="widget-title">TECHWAMP Engineering College</h3>
+                        <div class="textwidget">Address: India<br>
+                            <p>Tel: 0120700000<br>
+                                E-mail: <a href="#">info@techwamp.ac.in</a></p>
+                            <a href="#">Get directions on the map</a> →
+                        </div>
+                    </section>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated map" data-wow-delay=".5s">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30704372.53937202!2d64.3770905165836!3d20.046574162901752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1643354001633!5m2!1sen!2sin"
+                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated" data-wow-delay=".1s">
+                    <h3>Subscribe Us</h3>
+                    <h4 id="subscription-alert"></h4>
+                    <form id="subscription-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="subscription-name" name="subscription-name"
+                                placeholder="Enter your Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="subscription-email" name="subscription-email"
+                                placeholder="Enter your Email Address">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-5"
+                            style="float: right;">Subscribe</button>
+                            
+                            </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Contact-->
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <p class="copyright">
+                        Copyright &copy; 2021 | TECHWAMP Engineering College
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <!--JavaScripts CDN-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+
+    <!--JavaScript Internal Files-->
+    <script src="./assets/default-js/jquery.js"></script>
+    <script src="./assets/default-js/bootstrap.min.js"></script>
+    <script src="./assets/default-js/jquery.easing.min.js"></script>
+    <script src="./assets/default-js/jquery.fittext.js"></script>
+    <script src="./assets/default-js/wow.min.js"></script>
+    <script src="./assets/default-js/creative.js"></script>
+    <script src="./assets/css/owl-carousel/owl.carousel.js"></script>
+
+    <!-- Custom JS-->
+    <script src="./assets/js/firebase.js"></script>
+    <script src="./assets/js/searchdata.js"></script>
+    <script src="./assets/js/home.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                autoPlay: 3000,
+                items: 3,
+                itemsDesktop: [1199, 3],
+                itemsDesktopSmall: [979, 3]
+            });
+
+        });
+    </script>
 </body>
 
 </html>
