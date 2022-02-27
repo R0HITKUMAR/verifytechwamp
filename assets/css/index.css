@@ -1,4 +1,12 @@
-﻿html,
+﻿@import url("https://fonts.googleapis.com/css?family=Oswald:400,300");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600");
+@import url("./index/owl-carousel/owl.carousel.css");
+@import url("./index/owl-carousel/owl.theme.css");
+@import url("./index/bootstrap.min.css");
+@import url("./index/animate.min.css");
+@import url("./main.css");
+
+html,
 body {
     width: 100%;
     height: 100%;
@@ -13,7 +21,7 @@ a {
 }
 
 #loading {
-    background-image: url("../img/logo-loader.png");
+    background-image: url("../img/logo/loader.png");
     background-position: center center;
     background-repeat: no-repeat;
     height: 200px;
@@ -266,7 +274,7 @@ nav.affix-top {
 /*-------- header css --------------*/
 
 header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url("../img/bg-1.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url("../img/bg/bg-1.png");
     height: 600px;
     background-position: center;
     background-repeat: no-repeat;
