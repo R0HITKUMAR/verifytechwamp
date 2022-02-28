@@ -1,8 +1,11 @@
 const certificateno = new URLSearchParams(window.location.search);
 if (certificateno != "") {
-    v = certificateno.get('no');
-    document.getElementById('search-certificateno').value = v;
-    getcertificatesdetails();
+    document.getElementById("home").style.display = "none";
+    var D = document.getElementById("verifyData");
+    var Show = `
+        <iframe src="verify.html?${certificateno}" width="100%" height="550px"></iframe>
+    `;
+    D.innerHTML = Show;
 
 }
 

@@ -85,3 +85,18 @@ function displayToUser(ID, pdfDataUri, pdfBytes) {
     link.href = URL.createObjectURL(blob);
     link.download = `Certificate [${ID}]`;
 }
+
+function displayToVerify(ID, pdfDataUri, pdfBytes) {
+    var adobeDCView = new AdobeDC.View({ clientId: "e3cc3fdbe0b24f8689413e45b058847f", divId: "pdf-viewer" });
+    adobeDCView.previewFile({
+        content: { location: { url: pdfDataUri } },
+        metaData: { fileName: "Certificates.pdf" }
+    }, { embedMode: "IN_LINE" });
+
+    swal.close();
+    const blob = new Blob([pdfBytes], { type: "application/pdf" });
+    const link = document.getElementById("certificate-download");
+    link.href = URL.createObjectURL(blob);
+    link.download = `Certificate [${ID}]`;
+
+}

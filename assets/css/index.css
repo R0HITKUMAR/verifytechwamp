@@ -267,7 +267,8 @@ nav.affix-top {
     -moz-border-radius: 10px;
     color: #fff;
 }
-.margin-right-nav{
+
+.margin-right-nav {
     margin-right: 10px;
 }
 
@@ -302,9 +303,11 @@ header .header-content {
     font-size: 50px !important;
     font-family: "Oswald";
 }
+
 .header-content h1 span {
     color: #ff4c00;
 }
+
 .header-content h3 {
     margin-bottom: 35px;
     color: #ff4c00;
@@ -399,14 +402,18 @@ header .header-content {
 #about h1 span {
     color: #ff4c00;
 }
-#about h2,h4,li{
+
+#about h2,
+h4,
+li {
     font-family: "Oswald";
 }
+
 /*-------- how it works css --------------*/
 #how-it-works {
     padding: 120px 0 0;
     width: 100%;
-    height:max-content;
+    height: max-content;
 }
 
 #how-it-works::before {
@@ -744,6 +751,7 @@ header .header-content {
         text-align: center;
         height: 300px;
     }
+
     .header-content p {
         color: #ddd;
         font-size: 13px;
@@ -826,6 +834,7 @@ header .header-content {
     header {
         height: 530px;
     }
+
     .header-content p {
         color: #ddd;
         font-size: 13px;
@@ -924,6 +933,7 @@ header .header-content {
         text-align: center;
         height: 300px;
     }
+
     .header-content p {
         color: #ddd;
         font-size: 13px;
@@ -1066,4 +1076,30 @@ header .header-content {
     .textright {
         margin-top: 5px;
     }
+}
+
+
+::-webkit-input-placeholder {
+    /* WebKit browsers */
+    text-transform: none;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    text-transform: none;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    text-transform: none;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    text-transform: none;
+}
+
+::placeholder {
+    /* Recent browsers */
+    text-transform: none;
 }

@@ -1,14 +1,16 @@
 const { PDFDocument, rgb, degrees } = PDFLib;
 const generatePDF = async (ID, title, img, name, rollno, by, gdate, ddate, to) => {
-    swal.fire({
-        title: "Generating PDF...",
-        text: "Please wait...",
-        buttons: false,
-        closeOnClickOutside: false,
-        closeOnEsc: false,
-        icon: "info",
-        allowOutsideClick: false
-    });
+    if (to != 3) {
+        swal.fire({
+            title: "Generating PDF...",
+            text: "Please wait...",
+            buttons: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            icon: "info",
+            allowOutsideClick: false
+        });
+    }
 
     // Load a PDFDocument from the existing PDF bytes
     const existingPdfBytes = await fetch("./assets/jspdf/Certificate.pdf").then((res) =>
@@ -16,6 +18,11 @@ const generatePDF = async (ID, title, img, name, rollno, by, gdate, ddate, to) =
     );
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     pdfDoc.registerFontkit(fontkit);
+
+    pdfDoc.setAuthor('TECHWAMP Engineering College')
+    pdfDoc.setSubject('Certificates Issued by TECHWAMP Engineering College')
+    pdfDoc.setProducer('TWEC Portal')
+    pdfDoc.setCreator('TWEC (https://verifytechwamp.ml)')
 
     // Get Font & Embeed
     const fontBytes = await fetch("./assets/jspdf/engagement.ttf").then((res) =>
@@ -109,6 +116,9 @@ const generatePDF = async (ID, title, img, name, rollno, by, gdate, ddate, to) =
     }
     else if (to == 2) {
         displayToUser(ID, pdfDataUri, pdfBytes)
+    }
+    else if (to == 3) {
+        displayToVerify(ID, pdfDataUri, pdfBytes)
     }
 
 };
