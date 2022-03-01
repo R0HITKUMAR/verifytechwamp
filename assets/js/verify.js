@@ -6,23 +6,9 @@ if (certificateno != "") {
     else if (certificateno.get('sno') != null) {
         verifyStudent(certificateno.get('sno'));
     }
-    else{
+    else {
         window.location.href = "./verify.html";
     }
-}
-
-function extend(base) {
-    var parts = Array.prototype.slice.call(arguments, 1);
-    parts.forEach(function (p) {
-        if (p && typeof (p) === 'object') {
-            for (var k in p) {
-                if (p.hasOwnProperty(k)) {
-                    base[k] = p[k];
-                }
-            }
-        }
-    });
-    return base;
 }
 
 function verifyCertificate(ID = document.getElementById('cno').value) {
@@ -34,6 +20,10 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
             <div class="container">
                 <div class="card card-body m-1 mt-5 mb-5">
                     <p class="h3 text-center mb-5">TECHWAMP Engineering College</p>
+                    <div class="text-right mb-5">
+                        <a href="verify.html" class="btn btn-primary btn-sm text-light"> <i class="fas fa-home"></i> Home</a>
+    
+                    </div>
                     <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
                         <strong>Error!</strong> Certificate not found.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -67,16 +57,33 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
                         <div class="card card-body m-1 mt-5 mb-5">
                             <p class="h3 text-center">TECHWAMP Engineering College</p>
                             <p class="h6 text-center">Certificate Title : ${Data.CName}</p>
-                            <div class="text-right">
-                                <a class="btn btn-primary btn-sm" id="certificate-download"> <i class="fas fa-download"></i> Download</a>
+                            <div class="flex">
+                                <span class="float-left mb-5">
+                                    <a href="verify.html" class="btn btn-primary btn-sm text-light"> <i class="fa fa-home"></i></a>
+                                    <button class="btn btn-primary btn-sm text-light" onclick="window.location.reload();"> <i
+                                            class="fa-solid fa-backward"></i></button>
+                                </span>
+                                <span class="float-right mb-5">
+                                    <a class="btn btn-primary btn-sm text-light" id="certificate-download"> <i
+                                            class="fas fa-download"></i></a>
+                                    <button class="btn btn-primary btn-sm text-light" onclick="window.print();"> <i
+                                            class="fa-solid fa-print"></i></button>
+                                </span>
                             </div>
                             <div class="row">
                                 <div class="col-md-8 col-12">
                                     <div id="pdf-viewer">
-                        
+
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
+                                <label><b>Certificate Verification Link</b></label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="clink" value='https://verifytechwamp.ml?no=${Data.CID}' readonly>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" id="cbutton" onclick="copyText('cbutton','clink')" type="button"><i class="fa-solid fa-copy"></i></button>
+                                        </div>
+                                    </div>
                                     <!-- View Certificate Holder Details -->
                                     <div class="card card-body mt-5 text-center">
                                         <center><img src="./assets/img/Others/verifies.jpg" class="text-center mb-5" width="40%">
@@ -88,16 +95,6 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
                                         <span class="tbold">Date of Issue : </span>${Data.CDate}
                                     </div>
 
-                                </div>
-                            </div>
-                            <div class="row mt-5">
-                                <div class="col-md-6 offset-md-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="cno" placeholder="Search Another Certificate">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" onclick="verifyCertificate()" class="btn btn-primary btn-block">Search</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -115,6 +112,16 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
             });
         }
     });
+}
+
+function copyText(bid, iid) {
+    var Input = document.getElementById(iid);
+    var Button = document.getElementById(bid);
+    navigator.clipboard.writeText(Input.value);
+    Button.innerHTML = `<i class="fa-solid fa-clone"></i>`;
+    setTimeout(function () {
+        Button.innerHTML = `<i class="fa-solid fa-copy"></i>`;
+    }, 2000)
 }
 
 function verifyStudent(ID) {
@@ -147,6 +154,17 @@ function verifyStudent(ID) {
                 <div class="container">
                     <div class="card card-body m-1 mt-5 mb-5" id="userCard">
                             <h5 class="card-title text-center">${data.Name}</h5>
+                            <div class="flex">
+                                <span class="float-left mb-5">
+                                    <a href="verify.html" class="btn btn-primary btn-sm text-light"> <i class="fa fa-home"></i></a>
+                                    <button class="btn btn-primary btn-sm text-light" onclick="window.location.reload();"> <i
+                                            class="fa-solid fa-refresh"></i></button>
+                                </span>
+                                <span class="float-right mb-5">
+                                    <button class="btn btn-primary btn-sm text-light" onclick="window.print();"> <i
+                                            class="fa-solid fa-print"></i></button>
+                                </span>
+                            </div>
                             <div class="row no-gutters">
                             <div class="col-md-6 col-12 mb-5">
                                 <p class="card-text">
@@ -160,6 +178,13 @@ function verifyStudent(ID) {
                                 <b>Total Certificates Issued :</b> ${data.No}<br>
                                 <b>Total Certificates Added : </b><span id="certificates-added">0</span><br>
                             </div>
+                            </div>
+                            <label><b>Public Profile Link</b></label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="slink" value='https://verifytechwamp.ml?sno=${data.Rollno}' readonly>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" id="sbutton" onclick="copyText('sbutton','slink')" type="button"><i class="fa-solid fa-copy"></i></button>
+                                </div>
                             </div>
                             <div class="container">
                                 <p class="card-text mt-5"><b>From TECHWAMP Engineering College</b></p>

@@ -93,7 +93,6 @@ function displayToVerify(ID, pdfDataUri, pdfBytes) {
         metaData: { fileName: "Certificates.pdf" }
     }, { embedMode: "IN_LINE" });
 
-    swal.close();
     const blob = new Blob([pdfBytes], { type: "application/pdf" });
     const link = document.getElementById("certificate-download");
     link.href = URL.createObjectURL(blob);

@@ -1,11 +1,17 @@
+function getcertificatesdetails(){
+    var D = document.getElementById("search-certificateno").value;
+    window.location.href = `index.html?no=${D}`;
+}
+
 const certificateno = new URLSearchParams(window.location.search);
 if (certificateno != "") {
     document.getElementById("home").style.display = "none";
-    var D = document.getElementById("verifyData");
-    var Show = `
-        <iframe src="verify.html?${certificateno}" width="100%" height="550px"></iframe>
-    `;
-    D.innerHTML = Show;
+    document.getElementById("verifyData").style.display = "block";
+    var frame = document.getElementById("Iframe");
+    frame.src = `verify.html?${certificateno}`;
+    var H = window.innerHeight;
+    var H = 0.95 * H;
+    frame.style.height = H + "px";
 
 }
 
