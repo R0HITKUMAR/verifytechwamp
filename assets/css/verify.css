@@ -5,10 +5,11 @@
 @import url("https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css");
 @import url("./main.css");
 
-body{
+body {
     font-family: "Poppins", Arial, sans-serif;
 }
-.tbold{
+
+.tbold {
     font-weight: bolder;
     display: inline-block !important;
 }
@@ -18,5 +19,12 @@ body{
     padding: 0px !important;
     margin: 0px !important;
     background-color: rgba(255, 255, 255, 0);
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
-  

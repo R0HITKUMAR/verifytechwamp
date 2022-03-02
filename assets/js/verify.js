@@ -12,7 +12,14 @@ if (certificateno != "") {
 }
 
 function verifyCertificate(ID = document.getElementById('cno').value) {
+
     var container = document.getElementById('verify');
+    container.innerHTML = `
+    <div class="center" style="text-align: center;padding-top: 20%;">
+            <i class="fa-solid fa-spin fa-spinner mb-3" style="font-size: 100px;"></i><br>
+            Loading..
+    </div>
+    `;
     firebase.database().ref('Certificates/' + ID).on('value', function (snapshot) {
         if (snapshot.val() == null) {
             Alert =
@@ -22,7 +29,6 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
                     <p class="h3 text-center mb-5">TECHWAMP Engineering College</p>
                     <div class="text-right mb-5">
                         <a href="verify.html" class="btn btn-primary btn-sm text-light"> <i class="fas fa-home"></i> Home</a>
-    
                     </div>
                     <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
                         <strong>Error!</strong> Certificate not found.
@@ -73,7 +79,10 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
                             <div class="row">
                                 <div class="col-md-8 col-12">
                                     <div id="pdf-viewer">
-
+                                        <div class="center" style="text-align: center;padding-top: 20%;">
+                                            <i class="fa-solid fa-spin fa-spinner mb-3" style="font-size: 100px;"></i><br>
+                                            Loading..
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
@@ -126,13 +135,25 @@ function copyText(bid, iid) {
 
 function verifyStudent(ID) {
     var Modal = document.getElementById('verify');
-    Modal.innerHTML = "";
+    Modal.innerHTML = `
+    <div class="center" style="text-align: center;padding-top: 20%;">
+            <i class="fa-solid fa-spin fa-spinner mb-3" style="font-size: 100px;"></i><br>
+            Loading..
+    </div>
+    `;
     firebase.database().ref('Students/' + ID).on('value', function (snapshot) {
         data = snapshot.val();
         if (data == null) {
             Alert = `
                 <div class="container">
                     <div class="card card-body m-1 mt-5 mb-5">
+                    <div class="flex">
+                                <span class="float-left mb-5">
+                                    <a href="verify.html" class="btn btn-primary btn-sm text-light"> <i class="fa fa-home"></i></a>
+                                    <button class="btn btn-primary btn-sm text-light" onclick="window.location.reload();"> <i
+                                            class="fa-solid fa-refresh"></i></button>
+                                </span>
+                            </div>
                         <h5 class="card-title text-center">Not Found</h5>
                             <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
                                 <strong>Error!</strong> Student Not Found. Contact Admin
