@@ -169,12 +169,13 @@ function signUp() {
                     Alert.innerHTML += AlertText;
                 });
                 // Update User Data
-                firebase.database().ref('Users/' + Roll).set({
-                    Name: Name,
-                    Roll: Roll,
-                    email: email,
-                    password: password,
-                })
+                firebase.database().ref('Students/' + Roll).update({
+                    Password: password,
+                }).then(function () {
+                    
+                }).catch(function (error) {
+                    
+                });
                 document.getElementById("signupbtn").value = "Signup Successful";
                 AlertText = `
                     <div class="alert alert-secondary  alert-dismissible fade show text-center mb-1" role="alert">

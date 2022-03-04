@@ -1,14 +1,5 @@
-function getcertificatesdetails() {
-    var D = document.getElementById("search-certificateno").value;
-    window.location.href = `index.html?no=${D}`;
-}
-
 const certificateno = new URLSearchParams(window.location.search);
 if (certificateno != "") {
-    if (certificateno == "home=") {
-        document.getElementById("home").style.display = "block";
-        document.getElementById("verifyData").style.display = "none";
-    }
     document.getElementById("home").style.display = "none";
     document.getElementById("verifyData").style.display = "block";
     var frame = document.getElementById("Iframe");
@@ -16,14 +7,12 @@ if (certificateno != "") {
     var H = window.innerHeight;
     var H = 0.95 * H;
     frame.style.height = H + "px";
-
 }
 
-function viewHome() {
-    document.getElementById("home").style.display = "block";
-    document.getElementById("verifyData").style.display = "none";
+function getcertificatesdetails() {
+    var D = document.getElementById("search-certificateno").value;
+    window.location.href = `index.html?no=${D}`;
 }
-
 
 $('#subscription-form').submit(function (e) {
     e.preventDefault();

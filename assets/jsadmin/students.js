@@ -240,13 +240,21 @@ function viewStudent(ID) {
             Modal.innerHTML = Alert;
         }
         else {
+            if (data.DP == null)
+                DP = './assets/img/icon/profile.png';
+            else {
+                DP = data.DP;
+            }
             var Student = `
             <div class="container">
                 <div class="card">
                     <div class="card-body" id="userCard">
                         <h5 class="card-title text-center">${data.Name}</h5>
                         <div class="row no-gutters">
-                        <div class="col-md-6 col-12 mb-5">
+                        <div class="col-md-4 col-12 text-center">
+                            <img src="${DP}" id="userDP" alt="profile" class="img-fluid mb-3" style="border-radius: 50%;" width="100px">
+                        </div>
+                        <div class="col-md-4 col-12 mb-5">
                             <p class="card-text">
                             <b>Roll No :</b> ${data.Rollno}<br>
                             <b>Branch & Year :</b> ${data.BranchYear}<br>
@@ -254,7 +262,7 @@ function viewStudent(ID) {
                             <b>Phone No. :</b> +91 ${data.ContactNo}<br>
                             </p>
                         </div>
-                        <div class="col-md-6 col-12 text-center mb-5">
+                        <div class="col-md-4 col-12 text-center mb-5">
                             <b>Total Certificates Issued :</b> ${data.No}<br>
                             <b>Total Certificates Added : </b><span id="certificates-added">0</span><br>
                         </div>

@@ -40,6 +40,8 @@ function loadUser() {
 
     });
 
+    //Profile Image
+    getUserDetails(UserRoll_No);
     //My Certificates
     viewStudent(UserRoll_No);
 
@@ -252,5 +254,146 @@ function deleteprofile() {
             Toast.fire({ icon: 'error', title: error.message });
         });
     }
+}
 
+function getUserDetails(ID = document.getElementById("new-phone").value) {
+    var Container = document.getElementById('userProfile');
+    Container.innerHTML = "";
+    firebase.database().ref('Students/' + ID).once('value').then(function (snapshot) {
+        var data = snapshot.val();
+        if (data.Name == null) {
+            if (data.DP == null)
+                DP = './assets/img/icon/profile.png';
+            else{
+                DP = data.DP;
+                document.getElementById('user-profile-photo').src = DP;
+            }
+            var D = `
+            <div class="row">
+                <div class="col-12">
+                <div class="card card-body mb-5">
+                    <!--User Profile-->
+                    <div class="row">
+                    <div class="col-12 text-center">
+                        <img src="${DP}" id="userDP"  alt="profile" class="img-fluid mb-3 rounded-circle" width="100px">
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>`;
+            Container.innerHTML = D;
+        }
+        else {
+            if (data.DP == null)
+                DP = './assets/img/icon/profile.png';
+            else{
+                DP = data.DP;
+                document.getElementById('user-profile-photo').src = DP;
+            }
+                
+            var D = `
+            <div class="row">
+                <div class="col-12">
+                <div class="card card-body mb-5">
+                    <!--User Profile-->
+                    <div class="row">
+                    <div class="col-md-4 col-12 text-center">
+                        <img src="${DP}" id="userDP" alt="profile" class="img-fluid mb-3" style="border-radius: 50%;" width="100px">
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <b>Name : </b> ${data.Name}<br>
+                        <b>Roll No. : </b> ${data.Rollno}<br>
+                        <b>Branch & Year : </b> ${data.BranchYear}<br>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <b>Email :</b> ${data.Email}<br>
+                        <b>Contact No :</b> ${data.ContactNo}<br>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            `;
+            Container.innerHTML = D;
+        }
+    });
+}
+
+function trialImage(){
+    var file = document.getElementById("profile-photo").files[0];
+    document.getElementById('userDP').src = URL.createObjectURL(file);
+    document.getElementById('user-profile-photo').src = URL.createObjectURL(file);
+}
+
+function updatephoto() {
+    var Alert = document.getElementById("profileUpdateAlert");
+    var button = document.getElementById("updatephotoButton");
+    var file = document.getElementById("profile-photo").files[0];
+    var ID = document.getElementById("new-phone").value;
+    if (file !== undefined) {
+        var storageRef = firebase.storage().ref(ID + file.name);
+        var task = storageRef.put(file);
+        task.on('state_changed',
+            function progress(snapshot) {
+                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                button.innerHTML = `Uploading <i class="fa-solid fa-spin fa-spinner ml-2"></i>`;
+                AlertText = `
+                <div class="mb-3">
+                    <progress value="${percentage}" max="100" style="width:100%;"></progress>
+                </div>`;
+                Alert.innerHTML = AlertText;
+                console.log(percentage);
+            }
+        );
+        task.then(function (snapshot) {
+            console.log('File Upload Successfully');
+            button.innerHTML = `Uploaded <i class="fa-solid fa-check ml-2"></i>`;
+            storageRef
+                .getDownloadURL()
+                .then(function (url) {
+                    console.log(url);
+                    AlertText = `
+                    <div class="alert alert-success  alert-dismissible fade show mb-1" role="alert">
+                        <strong>File Uploaded Successfully</strong>
+                        <button onclick="ShowAttachment('${url}')" class="btn btn-primary btn-sm" style="float:right">View</button>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>`;
+                    Alert.innerHTML = AlertText;
+
+                    FileButton = `
+                    <label>File Uploaded Successfullly</label><br>
+                    <button onclick="ShowAttachment('${url}')" type="button" class="btn btn-primary btn-sm" style="float: left;">View</button>
+                    `;
+                    document.getElementById("CfileUploadPart").innerHTML = FileButton;
+                    firebase.database().ref('Students/' + ID).update({
+                        DP: url
+                    });
+                    getUserDetails();
+                })
+                .catch(function (error) {
+                    button.innerHTML = `Error <i class="fa-solid fa-x ml-2"></i>`;
+                    AlertText = `
+                <div class="alert alert-danger alert-dismissible fade show text-center mb-1" role="alert">
+                    <strong>${error.message}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>`;
+                    Alert.innerHTML = AlertText;
+                });
+        }
+        );
+    }
+    else {
+        AlertText = `
+                <div class="alert alert-danger  alert-dismissible fade show text-center mb-1" role="alert">
+                    <strong>Enter a Valid Reference or Choose a Valid File</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>`;
+        Alert.innerHTML = AlertText;
+    }
 }

@@ -21,7 +21,7 @@
   <link rel="shortcut icon" href="./assets/img/logo/favicon.png" type="image/x-icon">
 
   <!--( Internal Styles )-->
-  
+
   <link rel="stylesheet" href="./assets/css/user.css">
   <script src="https://kit.fontawesome.com/989bb54246.js"></script>
 
@@ -390,6 +390,10 @@
       <!-- Profile Section -->
       <section id="profile_section" class="d-none">
         <h2 class="ml-4">Profile</h2>
+        <div class="container" id="userProfile">
+
+        </div>
+
         <div class="container">
           <div class="row">
             <div class="col-md-6 col-12">
@@ -421,6 +425,14 @@
 
             <div class="col-md-6 col-12">
               <div class="card card-body mb-5">
+                <h6 class="text-center mt-5" style="color: black;">Update Profile Photo</h6>
+                <div class="input-group mb-3">
+                  <input type="file" id="profile-photo" onchange="trialImage()">
+                  <div class="input-group-append">
+                    <button onclick="updatephoto()" id="updatephotoButton" class="btn btn-primary"
+                      type="button">Update</button>
+                  </div>
+                </div>
                 <h5 class="text-center mb-3">Admin Details</h5>
                 <div id="profileUpdateAlert"></div>
                 <h6 style="color: black;">Name</h6>
@@ -442,7 +454,6 @@
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       <!-- Help Section -->

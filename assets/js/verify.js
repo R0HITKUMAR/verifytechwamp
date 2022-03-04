@@ -15,8 +15,9 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
 
     var container = document.getElementById('verify');
     container.innerHTML = `
-    <div class="center" style="text-align: center;padding-top: 20%;">
-            <i class="fa-solid fa-spin fa-spinner mb-3" style="font-size: 100px;"></i><br>
+    <div class="center" style="text-align: center;padding-top: 10%;">
+            <img src="./assets/img/logo/full-dark.png" height="100px" class="mb-5"><br>
+            <i class="fa-solid fa-spin fa-circle-notch mb-3" style="font-size: 100px;"></i><br>
             Loading..
     </div>
     `;
@@ -79,9 +80,10 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
                             <div class="row">
                                 <div class="col-md-8 col-12">
                                     <div id="pdf-viewer">
-                                        <div class="center" style="text-align: center;padding-top: 20%;">
-                                            <i class="fa-solid fa-spin fa-spinner mb-3" style="font-size: 100px;"></i><br>
-                                            Loading..
+                                        <div class="center" style="text-align: center;padding-top: 10%;">
+                                            <img src="./assets/img/logo/full-dark.png" height="100px" class="mb-5"><br>
+                                            <i class="fa-solid fa-spin fa-circle-notch mb-3" style="font-size: 100px;"></i><br>
+                                            Generating...
                                         </div>
                                     </div>
                                 </div>
@@ -136,8 +138,9 @@ function copyText(bid, iid) {
 function verifyStudent(ID) {
     var Modal = document.getElementById('verify');
     Modal.innerHTML = `
-    <div class="center" style="text-align: center;padding-top: 20%;">
-            <i class="fa-solid fa-spin fa-spinner mb-3" style="font-size: 100px;"></i><br>
+    <div class="center" style="text-align: center;padding-top: 10%;">
+            <img src="./assets/img/logo/full-dark.png" height="100px" class="mb-5"><br>
+            <i class="fa-solid fa-spin fa-circle-notch mb-3" style="font-size: 100px;"></i><br>
             Loading..
     </div>
     `;
@@ -171,6 +174,11 @@ function verifyStudent(ID) {
             Modal.innerHTML = Alert;
         }
         else {
+            if (data.DP == null)
+                DP = './assets/img/icon/profile.png';
+            else{
+                DP = data.DP;
+            }
             var Student = `
                 <div class="container">
                     <div class="card card-body m-1 mt-5 mb-5" id="userCard">
@@ -187,7 +195,10 @@ function verifyStudent(ID) {
                                 </span>
                             </div>
                             <div class="row no-gutters">
-                            <div class="col-md-6 col-12 mb-5">
+                            <div class="col-md-4 col-12 text-center">
+                            <img src="${DP}" id="userDP" alt="profile" class="img-fluid mb-3" style="border-radius: 50%;" width="100px">
+                     </div>
+                            <div class="col-md-4 col-12 mb-5">
                                 <p class="card-text">
                                 <b>Roll No :</b> ${data.Rollno}<br>
                                 <b>Branch & Year :</b> ${data.BranchYear}<br>
@@ -195,7 +206,7 @@ function verifyStudent(ID) {
                                 <b>Phone No. :</b> +91 ${data.ContactNo}<br>
                                 </p>
                             </div>
-                            <div class="col-md-6 col-12 text-center mb-5">
+                            <div class="col-md-4 col-12 text-center mb-5">
                                 <b>Total Certificates Issued :</b> ${data.No}<br>
                                 <b>Total Certificates Added : </b><span id="certificates-added">0</span><br>
                             </div>
