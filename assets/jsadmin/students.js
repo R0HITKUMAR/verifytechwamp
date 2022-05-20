@@ -86,7 +86,7 @@ function getStudentsDetails() {
             key = childSnapshot.key;
             row =
                 `<tr>
-                    <td>${e}</td>
+                    <td>${e++}</td>
                     <td>${data.Rollno}</td>
                     <td>${data.Name}</td>
                     <td>${data.BranchYear}</td>
@@ -97,7 +97,7 @@ function getStudentsDetails() {
                         <a onclick="viewStudent('${data.Rollno}')" class="table_button"><i class="fa fa-eye"></i></a>
                     </td>
                     <td>
-                        <a href="https://web.whatsapp.com/send?phone=+91${data.ContactNo}" class="table_button" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                        <a href="https://web.whatsapp.com/send?phone=+91${data.ContactNo}" class="table_button" target="_blank"><i class="fa fa-brands fa-whatsapp"></i></a>
                         <a href="mailto:${data.Email}" class="table_button" target="_blank"><i class="fa fa-envelope"></i></a>
                     </td>
                     <td>
@@ -291,12 +291,7 @@ function loadCertificates(ID, no) {
     var contents = document.getElementById("techwampCertificates");
     if (no == 0) {
         Alert = `
-        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-            <strong>No Certificates Issued!</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        <img src="./assets/img/icon/no-cert.svg" width="100%">
         `;
         contents.innerHTML = Alert;
     }
@@ -335,12 +330,7 @@ function cstoreCertificates(ID) {
     firebase.database().ref("CStore/" + ID).on('value', function (snapshot) {
         if (snapshot.val() == null) {
             Alert = `
-            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                <strong>No Certificates Added!</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            <img src="./assets/img/icon/no-add.svg" width="100%">
             `;
             contents.innerHTML = Alert;
         }

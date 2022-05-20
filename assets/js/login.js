@@ -169,7 +169,7 @@ function signUp() {
                     Alert.innerHTML += AlertText;
                 });
                 // Update User Data
-                firebase.database().ref('Students/' + Roll).update({
+                firebase.database().ref('StudentID/' + Roll).update({
                     Password: password,
                 }).then(function () {
                     

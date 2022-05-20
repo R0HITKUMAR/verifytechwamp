@@ -11,7 +11,9 @@ if (certificateno != "") {
 
 function getcertificatesdetails() {
     var D = document.getElementById("search-certificateno").value;
-    window.location.href = `index.html?no=${D}`;
+    if (D != "") {
+        window.location.href = "verify.html?no=" + D;
+    }
 }
 
 $('#subscription-form').submit(function (e) {

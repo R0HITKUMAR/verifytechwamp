@@ -12,7 +12,6 @@ if (certificateno != "") {
 }
 
 function verifyCertificate(ID = document.getElementById('cno').value) {
-
     var container = document.getElementById('verify');
     container.innerHTML = `
     <div class="center" style="text-align: center;padding-top: 10%;">
@@ -27,16 +26,12 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
                 `
             <div class="container">
                 <div class="card card-body m-1 mt-5 mb-5">
-                    <p class="h3 text-center mb-5">TECHWAMP Engineering College</p>
-                    <div class="text-right mb-5">
+                <div class="text-right">
                         <a href="verify.html" class="btn btn-primary btn-sm text-light"> <i class="fas fa-home"></i> Home</a>
                     </div>
-                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                        <strong>Error!</strong> Certificate not found.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                <center><img src="./assets/img/logo/full-dark.png" width="200px"></center>
+                    <p class="h3 text-center mb-5">TECHWAMP Engineering College</p>
+                    <img src="https://v1.verifytechwamp.ml/assets/img/no-record-found.svg" height="200px">
                     <!-- Search Another -->
                     <div class="row mt-5">
                         <div class="col-md-6 offset-md-3">
@@ -151,23 +146,15 @@ function verifyStudent(ID) {
                 <div class="container">
                     <div class="card card-body m-1 mt-5 mb-5">
                     <div class="flex">
-                                <span class="float-left mb-5">
+                                <span class="float-left">
                                     <a href="verify.html" class="btn btn-primary btn-sm text-light"> <i class="fa fa-home"></i></a>
                                     <button class="btn btn-primary btn-sm text-light" onclick="window.location.reload();"> <i
                                             class="fa-solid fa-refresh"></i></button>
                                 </span>
                             </div>
-                        <h5 class="card-title text-center">Not Found</h5>
-                            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                                <strong>Error!</strong> Student Not Found. Contact Admin
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="container">
-                                <p class="card-text mt-5"><b>From CStore powered by TECHWAMP Engineering College</b></p>
-                                <div id="cstoreCertificates"></div>
-                            </div>
+                            <center><img src="./assets/img/logo/full-dark.png" width="200px"></center>
+                    <p class="h3 text-center mb-5">TECHWAMP Engineering College</p>
+                    <img src="./assets/img/icon/not-found.svg" width="100%">
                         </div>
                 </div>
                 `;
@@ -176,7 +163,7 @@ function verifyStudent(ID) {
         else {
             if (data.DP == null)
                 DP = './assets/img/icon/profile.png';
-            else{
+            else {
                 DP = data.DP;
             }
             var Student = `
@@ -241,12 +228,7 @@ function loadCertificates(ID, no) {
     var contents = document.getElementById("techwampCertificates");
     if (no == 0) {
         Alert = `
-        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-            <strong>No Certificates Issued!</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        <img src="./assets/img/icon/no-cert.svg" width="100%">
         `;
         contents.innerHTML = Alert;
     }
@@ -285,12 +267,7 @@ function cstoreCertificates(ID) {
     firebase.database().ref("CStore/" + ID).on('value', function (snapshot) {
         if (snapshot.val() == null) {
             Alert = `
-            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                <strong>No Certificates Added!</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            <img src="./assets/img/icon/no-add.svg" width="100%">
             `;
             contents.innerHTML = Alert;
         }
