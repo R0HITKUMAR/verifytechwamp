@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+
+
+body {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
+
+.btn-google {
+    color: white !important;
+    background-color: #ea4335;
+}
+
+.btn-facebook {
+    color: white !important;
+    background-color: #3b5998;
+}
+.card{
+    background-color: #ffffffc4;
+    height: 90%;
+}
+.fa{
+    font-size: 50px;
+    width: 50px;
+}
+
+.message {
+    font-size: 30px;
+    font-family: 'Ubuntu', sans-serif;
+    color: steelblue;
+}
+
+.success {
+    font-size: 18px;
+    margin-top: 15px;
+    color: seagreen;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.profile-card{
+    width: 100%;
+}
+
+.table_button .fa{
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+    width: 25px;
+}
+
+
+/* Placeholder */
+::-webkit-input-placeholder { /* WebKit browsers */
+    text-transform: none;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    text-transform: none;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    text-transform: none;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    text-transform: none;
+}
+::placeholder { /* Recent browsers */
+    text-transform: none;
+}

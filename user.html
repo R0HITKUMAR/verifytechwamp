@@ -2,545 +2,400 @@
 <html lang="en">
 
 <head>
-  <!-- Meta Tags -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="subject" content=" ">
-  <meta name="copyright" content=" ">
-  <meta name="revised" content=" " />
-  <meta name="author" content=" " />
-  <link href=" " rel="canonical" />
-
-  <!--( Title )-->
-  <title>User | verifyTECHWAMP</title>
-
-  <!--( Favicon )-->
-  <link rel="shortcut icon" href="./assets/img/logo/favicon.png" type="image/x-icon">
-
-  <!--( Internal Styles )-->
-
-  <link rel="stylesheet" href="./assets/css/user.css">
-
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="subject" content=" ">
+    <meta name="copyright" content=" ">
+    <meta name="revised" content=" " />
+    <meta name="author" content=" " />
+    <link href=" " rel="canonical" />
+    <!-- Title -->
+    <title>Welcome User | verifyTECHWAMP</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./assets/img/logo-dark.png" type="image/x-icon">
+    <!-- Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Internal CSS -->
+    <link href="./assets/css/styles.css" rel="stylesheet" />
 </head>
 
 <body>
-
-  <div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar" class="active">
-      <h1><a href="index.html" class="logo"><img src="./assets/img/logo/icon-light.png" width="60px"></a></h1>
-      <ul class="list-unstyled components mb-5">
-        <li class="active">
-          <a onclick="showdashboard_section()" href="#home"><span class="fa fa-home"></span> Home</a>
-        </li>
-        <li>
-          <a onclick="showmycertificates_section()" href="#my_certificates"><span class="fa fa-certificate"></span> My
-            Data</a>
-        </li>
-        <li>
-          <a onclick="showcstore_section()" href="#cstore"><span><img src="./assets/img/logo/cstore-dark.svg"
-                height="40px"></span>CStore</a>
-        </li>
-        <li>
-          <a onclick="showtickets_section()" href="#tickets"><span class="fa fa-bug"></span> Tickets</a>
-        </li>
-        <li>
-          <a onclick="showprofile_section()" href="#profile"><span class="fa fa-user"></span> Profile</a>
-        </li>
-        <li>
-          <a onclick="showhelp_section()" href="#help"><span class="fa fa-info"></span> Help</a>
-        </li>
-        <li>
-          <a onclick="logoutwithprompt()" href="#logout"> Logout</a>
-        </li>
-      </ul>
-      <div class="footer">
-        <p>
-          Copyright &copy; TWEC<br>
-          Designed by Rohit Kumar
-        </p>
-      </div>
-    </nav>
-    <!-- End of Sidebar -->
-
-    <!-- Start of Navbar  -->
-    <section id="content" class="m-2">
-      <nav class="navbar justify-content-between">
-        <button type="button" id="sidebarCollapse" class="btn btn-primary">
-          <i class="fa fa-arrow-right"></i>
-          <span class="sr-only">Toggle Menu</span>
-        </button>
+    <nav class="navbar navbar-light navbar-dark bg-dark justify-content-between">
+        <a class="navbar-brand"><img src="./assets/img/logo-dark.png" height="35px"></a>
         <ul style="list-style-type:none;">
-          <li class="nav-item dropdown">
-            <a class="navbar-brand text-decoration-none" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <img id="user-profile-photo" src="./assets/img/icon/profile.png" width="35" height="35"
-                class="rounded-circle"><span id="user-name-card" class="ml-2"
-                style="color:rgb(0, 0, 0)!important;"></span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a onclick="showdashboard_section()" class="dropdown-item" href="#dashboard">Dashboard</a>
-              <a onclick="showprofile_section()" class="dropdown-item" href="#profile">Update Profile</a>
-              <a onclick="logoutwithprompt()" class="dropdown-item" href="#logout">Logout</a>
-            </div>
-          </li>
+            <li class="nav-item dropdown">
+                <a class="navbar-brand text-decoration-none" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <img id="user-profile-photo" src="./assets/img/profile.png" width="35" height="35"
+                        class="rounded-circle"><span id="user-logo" class="ml-2" style="color:white!important;"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="user.html">Dashboard</a>
+                    <button class="dropdown-item" onclick="myCertificates()">My Certificates</button>
+
+                    <a data-toggle="modal" data-target="#profile-forms-model" onclick="updateProfileModel()"
+                        class="dropdown-item" href="">Update Profile</a>
+
+                    <a data-toggle="modal" data-target="#profile-forms-model" onclick="deleteProfileModel()"
+                        class="dropdown-item" href="">Delete Profile</a>
+
+                    <a data-toggle="modal" data-target="#profile-forms-model" onclick="changePassModel()"
+                        class="dropdown-item" href="">Change Password</a>
+
+                    <a onclick="logoutwithprompt()" class="dropdown-item" href="#">Logout</a>
+
+                </div>
+            </li>
         </ul>
-      </nav>
+    </nav>
 
-      <center>
-        <button id="showCertificateUser" type="button" class="btn btn-primary d-none" data-toggle="modal"
-          data-target="#certificateModelUser">
-        </button>
-        <button id="showAttachmentUser" type="button" class="btn btn-primary d-none" data-toggle="modal"
-          data-target="#attachmentModelUser">
-        </button>
-      </center>
+    <section id="dashboard-tabs">
+        <div class="text-center">
+            <span id="user" class="message"></span>
+        </div><br>
 
-      <!-- Dashboard Section -->
-      <section id="dashboard-section">
-        <h2 class="ml-4">Dashboard</h2>
-        <br>
-        <div id="counter-section" style="padding-bottom: 30px;">
-          <div class="container">
+        <div class="container">
             <div class="row">
-              <div class="four col-lg-4 col-md-6 col-12 mb-3">
-                <div class="counter-box colored">
-                  <span class="counter" id="total_certificates_issued">0</span>
-                  <p>Total Certificates Issued</p>
+                <div class="col-lg-3 col-6">
+                    <div class="card text-white bg-danger mb-3 text-center" style="max-width: 18rem;">
+                        <div class="card-body">
+                            <i class="fa fa-certificate"></i>
+                            <h5 class="card-title">My Certificates</h5>
+                            <button onclick="myCertificates()" class="btn btn-warning">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="four col-lg-4 col-md-6 col-12 mb-3">
-                <div class="counter-box colored">
-                  <span class="counter" id="total_certificates_issued_cstore">0</span>
-                  <p>Total Certificates Added</p>
+                <div class="col-lg-3 col-6">
+                    <div class="card text-white bg-danger mb-3 text-center" style="max-width: 18rem;">
+                        <div class="card-body">
+                            <i class="fa fa-upload"></i>
+                            <h5 class="card-title">File Upload</h5>
+                            <button onclick="fileUpload()" class="btn btn-warning" data-toggle="modal"
+                                data-target="#dashboard-forms-model">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="four col-lg-4 col-md-6 col-12 mb-3">
-                <div class="counter-box colored"></i>
-                  <span class="counter" id="tickets-count">0</span>
-                  <p>Tickets Submitted</p>
+                <div class="col-lg-3 col-6">
+                    <div class="card text-white bg-danger mb-3 text-center" style="max-width: 18rem;">
+                        <div class="card-body">
+                            <i class="fa fa-clipboard"></i>
+                            <h5 class="card-title">Issue Ticket</h5>
+                            <button onclick="ticketRequest()" class="btn btn-warning" data-toggle="modal"
+                                data-target="#dashboard-forms-model">Continue</button>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-lg-3 col-6">
+                    <div class="card text-white bg-danger mb-3 text-center" style="max-width: 18rem;">
+                        <div class="card-body">
+                            <i class="fa fa-search"></i>
+                            <h5 class="card-title">Search Ticket</h5>
+                            <button class="btn btn-warning" data-toggle="modal"
+                                data-target="#dashboard-ticketsearch-model">Continue</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-      </section>
-
-      <!-- My Certificates Section -->
-      <section id="my_certificates_section" class="d-none">
-        <h2 class="ml-4">My Certificates</h2>
-        <div id="my-cert">
-        </div>
-      </section>
-
-      <!-- Add Certificates Section -->
-      <section id="cstore_section" class="d-none">
-        <h2 class="ml-4">C - Store<span class="badge badge-pill badge-dark ml-2" style="font-size:x-small;">Powered by
-            TECHWAMP Engineering College</span></h2>
-
-        <div class="container">
-          <!--Buttons-->
-          <div class="row">
-            <div class="col-md-3 col-12">
-              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" onclick="" data-toggle="collapse"
-                data-target="#addCertificate" aria-expanded="false" aria-controls="addCertificate">
-                Add Certificate to CStore
-              </button>
-            </div>
-            <div class="col-md-3 col-7">
-              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" data-toggle="collapse"
-                data-target="#viewCertificates" aria-expanded="false" aria-controls="viewCertificates">
-                Toggle Certificates
-              </button>
-            </div>
-          </div>
-
-          <!--Form-->
-          <div class="collapse" id="addCertificate">
-            <div class="card card-body mb-5 col-12">
-              <div id="CStoreAlert">
-              </div>
-              <form id="cstore-form">
-                <div class="form-group row">
-                  <div class="col-md-6 col-12 mt-2">
-                    <label>Name</label>
-                    <input id="cstore_name" type="text" class="form-control" readonly>
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Autofilled as per Data Given during Registration</span>
-                    </small>
-                  </div>
-                  <div class="col-md-6 col-12 mt-2">
-                    <label>Roll No.</label>
-                    <input id="cstore_roll" type="text" class="form-control" readonly>
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Autofilled as per Data Given during Registration</span>
-                    </small>
-                  </div>
-                  <div class="col-md-4 col-12 mt-2">
-                    <label>Certificate No.</label>
-                    <input id="cstore_no" type="text" class="form-control" style="text-transform: uppercase;"
-                      placeholder="Enter Certificate No. (Optional)">
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Enter a Valid Certificate No.</span>
-                    </small>
-                  </div>
-                  <div class="col-md-4 col-12 mt-2">
-                    <label>Certificate Name</label>
-                    <input id="cstore_cname" type="text" class="form-control" style="text-transform: uppercase;"
-                      placeholder="Enter Certificate Name (Required)">
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Enter a Valid Certificate No.</span>
-                    </small>
-                  </div>
-                  <div class="col-md-4 col-12 mt-2">
-                    <label>Issuing Authority</label>
-                    <input id="cstore_issuingauthority" type="text" class="form-control"
-                      style="text-transform: uppercase;" placeholder="Enter Issuing Authority Name (Required)">
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Enter a Valid Certificate No.</span>
-                    </small>
-                  </div>
-
-                  <div class="col-md-5 col-12 mt-2">
-                    <label>Issue Date</label>
-                    <input id="cstore_issuedate" type="month" class="form-control" style="text-transform: uppercase;"
-                      placeholder="Choose Issue Date (Required)">
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Choose Valid Month & Year</span>
-                    </small>
-                  </div>
-
-                  <div class="col-md-7 col-12 mt-2">
-                    <label>Verify Link</label>
-                    <input id="cstore_verify" type="url" class="form-control" style="text-transform: lowercase;"
-                      placeholder="Enter Certificate Verification Link (Required)">
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Enter a valid Verify Link.</span>
-                    </small>
-                  </div>
-
-                  <div class="col-md-6 col-12 mt-2">
-                    <label>Add Attachment</label><br>
-                    <input type="file" id="cstore-file" />
-                    <button id="cstoreFileUploadButton" onclick="cstoreFileUpload()" type="button"
-                      class="btn btn-primary btn-sm" style="float: right;">Upload</button>
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Only .pdf are accepted</span>
-                    </small>
-                  </div>
-                  <div class="col-md-6 col-12 mt-2" id="CfileUploadPart">
-
-                  </div>
-                  <div class="d-none">
-                    <input id="cstore_viewurl">
-                    <input id="datenow">
-                  </div>
-                </div>
-                <div style="float: right;">
-                  <button type="reset" class="btn btn-secondary">Reset</button>
-                  <button id="cstoreUpdateButton" class="btn btn-primary d-none"
-                    onclick="UpdateCertificate()">Update</button>
-                  <button type="submit" onclick="addCertificate()" id="cstoreSubmittedButton"
-                    class="btn btn-primary">Send</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <!--Table-->
-        <div class="container">
-          <div class="collapse show" id="viewCertificates">
-            <div class="card card-body mb-5">
-              <table class="table table-responsive-lg" id="cstoreTable">
-                <thead>
-                  <tr>
-                    <th>S No.</th>
-                    <th>Certificate No.</th>
-                    <th>Certificate Name</th>
-                    <th>Issuing Authority</th>
-                    <th>Issue Date</th>
-                    <th>Verify</th>
-                    <th>View</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
-                <tbody id="cstore-table"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tickets Section -->
-      <section id="tickets_section" class="d-none">
-        <h2 class="ml-4">Tickets</h2>
-        <div class="container">
-          <!--Buttons-->
-          <div class="row">
-            <div class="col-md-3 col-12">
-              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" onclick="" data-toggle="collapse"
-                data-target="#ticketForm" aria-expanded="false" aria-controls="ticketForm">
-                Ticket Form
-              </button>
-            </div>
-            <div class="col-md-3 col-7">
-              <button class="btn btn-primary btn-block mb-3 btn-sm" type="button" data-toggle="collapse"
-                data-target="#viewTickets" aria-expanded="false" aria-controls="viewTickets">
-                Tickets
-              </button>
-            </div>
-          </div>
-
-          <!--Form-->
-          <div class="collapse" id="ticketForm">
-            <div class="card card-body mb-5 col-12">
-              <div id="TicketAlert">
-              </div>
-              <form id="ticket-form">
-                <div class="form-group row">
-                  <div class="col-md-6 col-12">
-                    <label>Name</label>
-                    <input id="u_name" type="text" class="form-control" readonly>
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Autofilled as per Data Given during Registration</span>
-                    </small>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <label>Roll No.</label>
-                    <input id="u_roll" type="text" class="form-control" readonly>
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Autofilled as per Data Given during Registration</span>
-                    </small>
-                  </div>
-                  <div class="col-12 mt-2">
-                    <label>Message</label>
-                    <textarea id="u_message" class="form-control" rows="6" placeholder="Description"></textarea>
-                    <!-- <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>From Admin</span>
-                    </small> -->
-                  </div>
-                  <div class="col-6 mt-2" id="fileUploadPart">
-                    <label>Add Attachment</label><br>
-                    <input type="file" id="ticket-file" />
-                    <button id="ticketFileUploadButton" onclick="ticketFileUpload()" type="button"
-                      class="btn btn-primary btn-sm" style="float: right;">Upload</button>
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Only .pdf are accepted</span>
-                    </small>
-                  </div>
-                  <div class="d-none">
-                    <input id="t_url" type="text" class="form-control" readonly>
-                  </div>
-                  <div class="col-6 mt-2">
-                    <small class="form-text text-muted">
-                      <span class="text-danger">*</span>
-                      <span>Once Submitted Form can not Changed or Deleted</span>
-                    </small>
-                  </div>
-                </div>
-                <div style="float: right;">
-                  <button type="reset" class="btn btn-secondary">Reset</button>
-                  <button type="submit" id="TicketSubmittedButton" class="btn btn-primary">Send</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <!--Table-->
-        <div class="container">
-          <div class="collapse show" id="viewtickets">
-            <div class="card card-body mb-5">
-              <table class="table table-responsive-lg" id="ticketsTable">
-                <thead>
-                  <tr>
-                    <th>S No.</th>
-                    <th>Ticket ID</th>
-                    <th>Date</th>
-                    <th>Message</th>
-                    <th>Status</th>
-                    <th>Attachment</th>
-                  </tr>
-                </thead>
-                <tbody id="tickets-table"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Profile Section -->
-      <section id="profile_section" class="d-none">
-        <h2 class="ml-4">Profile</h2>
-        <div class="container" id="userProfile">
-
-        </div>
-
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 col-12">
-              <div class="card card-body mb-5">
-                <h5 class="text-center mb-3">Change Email / Password</h5>
-                <div id="profileCredentialAlert"></div>
-                <div class="form-group">
-                  <input type="text" class="form-control" id="profile-email" placeholder="Email Address" required
-                    readonly>
-                </div>
-                <div class="input-group mb-3">
-                  <input type="password" id="new-password" class="form-control" placeholder="New Password"
-                    aria-describedby="changePassButton">
-                  <div class="input-group-append">
-                    <button onclick="changePass()" class="btn btn-primary" type="button"
-                      id="changePassButton">Update</button>
-                  </div>
-                </div>
-                <div class="input-group mb-3">
-                  <input type="email" id="newemail" class="form-control" placeholder="New Email Address"
-                    aria-describedby="updateemailButton">
-                  <div class="input-group-append">
-                    <button onclick="updateemail()" class="btn btn-primary" type="button"
-                      id="updateemailButton">Update</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6 col-12">
-              <div class="card card-body mb-5">
-                <h6 class="text-center mt-5" style="color: black;">Update Profile Photo</h6>
-                <div class="input-group mb-3">
-                  <input type="file" id="profile-photo" onchange="trialImage()">
-                  <div class="input-group-append">
-                    <button onclick="updatephoto()" id="updatephotoButton" class="btn btn-primary"
-                      type="button">Update</button>
-                  </div>
-                </div>
-                <h5 class="text-center mb-3">Admin Details</h5>
-                <div id="profileUpdateAlert"></div>
-                <h6 style="color: black;">Name</h6>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="new-name" readonly>
-                  <div class="input-group-append">
-                    <button onclick="updatename()" id="updatenameButton" class="btn btn-primary"
-                      type="button">Update</button>
-                  </div>
-                </div>
-                <h6 style="color: black;">Roll No.</h6>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="new-phone" readonly>
-                  <div class="input-group-append">
-                    <button onclick="updatephone()" id="updatephoneButton" class="btn btn-primary"
-                      type="button">Update</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </section>
-
-      <!-- Help Section -->
-      <section id="help_section" class="d-none">
-        <h2 class="ml-4">Help</h2>
-        <center>
-          <img src="./assets/img/icon/coming.png" class="img-fluid" width="80%">
-        </center>
-      </section>
-
-      <!--Certificate PopUP-->
-      <div class="modal fade bd-example-modal-lg" id="certificateModelUser" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" role="document">
-          <div class="modal-content ">
-            <div class="modal-footer">
-              <a href="" id="userpdfdownload" class="btn btn-primary" target="_blank">Download <i
-                  class="fa-solid fa-download ml-2"></i></a>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close <i
-                  class="fa-solid fa-x ml-2"></i></button>
-            </div>
-            <div class="modal-body">
-              <div id="user-adobe-dc-view"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!--Attachment-->
-      <div class="modal fade bd-example-modal-xl" id="attachmentModelUser" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl" role="document">
-          <div class="modal-content ">
-            <div class="modal-footer">
-              <a href="" id="attachmentdownloadUser" class="btn btn-primary" target="_blank">Open <i
-                  class="fa-solid fa-arrow-up-right-from-square ml-2"></i></a>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close <i
-                  class="fa-solid fa-x ml-2"></i></button>
-            </div>
-            <div class="modal-body" id="modalBodyUser">
-            </div>
-          </div>
-        </div>
-      </div>
-
     </section>
-  </div>
+
+    <section id="search-section">
+        <h1 class="text-center">Search</h1>
+        <div class="container mb-3">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <select class="form-control" id="search-by">
+                            <option>Select.</option>
+                            <option>Certificates No.</option>
+                            <option>Certificates Title</option>
+                            <option>Students Name</option>
+                            <option>Roll No</option>
+                            <option>Email Address</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search-keyword" style="text-transform:uppercase" placeholder="Keyword">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <button onclick="getresults()" class="btn btn-primary btn-block" type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="output-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" id="results"></div>
+            </div>
+            <div id="search-status" class="text-center mb-3">
+                <div id="spinners1" style="display: none;">
+                    <div class="spinner-grow text-muted"></div>
+                    <div class="spinner-grow text-primary"></div>
+                    <div class="spinner-grow text-success"></div>
+                    <div class="spinner-grow text-info"></div>
+                    <div class="spinner-grow text-warning"></div>
+                    <div class="spinner-grow text-danger"></div>
+                    <div class="spinner-grow text-secondary"></div>
+                    <div class="spinner-grow text-dark"></div>
+                    <div class="spinner-grow text-light"></div>
+                </div>
+                <center>
+                    <img id="norecordfound1" src="./assets/img/no-record-found.svg" width="300px"
+                        style="display: none;">
+                </center>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile-models">
+        <div class="modal fade" id="profile-forms-model" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" onclick="hidemodels()" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <img src="./assets/img/full-logo.png" class="text-center" height="70px">
+                        <h5 class="modal-title" id="profilemodal-name"></h5>
+                    </div>
+                    <div id="updateprofilealert" role="alert"
+                        class="alert alert-success  alert-dismissible fade show m-1" style="display:none">
+                        </button>
+                        <div id="updateprofile-alert" class="text-center"></div>
+                    </div>
+
+                    <!-- Update Profile Model -->
+                    <div class="modal-body mb-5" id="update-profile-model" style="display:none">
+                        <!-- Update Profile -->
+                        <div id="profile-update" style="display: none;">
+                            <label>Update Profile</label>
+                            <div class="input-group">
+                                <input id="new-name" type="text" class="form-control" placeholder="Name">
+                            </div><br>
+                            <div class="input-group">
+                                <input id="roll-no" type="url" class="form-control" placeholder="Enter Roll No.">
+                            </div><br>
+                            <div class="text-center">
+                                <input type="button" onclick="updateprofile()" id="profileUpdateButton"
+                                    class="btn btn-primary btn-block" value="Update Profile">
+                            </div>
+                        </div><br>
+
+                        <!-- Update Email -->
+                        <div id="email-update">
+                            <label>Update Email Address</label>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Current Email</label>
+                                <input type="email" class="form-control" id="useremail" readonly>
+                            </div>
+                            <div class="input-group">
+                                <input id="newemail" type="email" class="form-control"
+                                    placeholder="Updated Email Address">
+                                <span class="input-group-btn">
+                                    <button id="updateemailButton" onclick="updateemail()"
+                                        class="btn btn-default btn btn-primary" type="button">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Change Password Model -->
+                    <div class="modal-body mb-5" id="change-pass-model" style="display:none">
+                        <div id="changePassformalert" role="alert"
+                            class="alert alert-success  alert-dismissible fade show m-1" style="display:none">
+                            </button>
+                            <div id="changePass-alert" class="text-center"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="user-email" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="new-password" placeholder="Password">
+                        </div>
+                        <div class="text-center">
+                            <input type="button" onclick="changePass()" id="changePassButton"
+                                class="btn btn-primary btn-block" value="Change Password">
+                        </div>
+                    </div>
+
+                    <!-- Delete Profile Model -->
+                    <div class="modal-body mb-5" id="delete-profile-model" style="display:none">
+                        <div id="deleteprofilealert" role="alert"
+                            class="alert alert-success  alert-dismissible fade show m-1" style="display:none">
+                            </button>
+                            <div id="delete-alert" class="text-center"></div>
+                        </div>
+                        <div class="text-center">
+                            <input type="button" onclick="deleteprofile()" id="deleteprofileButton"
+                                class="btn btn-primary btn-block" value="Delete Account">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard-models">
+        <div class="modal fade" id="dashboard-forms-model" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" onclick="hidemodels()" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <img src="./assets/img/full-logo.png" class="text-center" height="70px">
+                        <h5 class="modal-title" id="dashboardmodal-name"></h5>
+                    </div>
+                    <!-- File Upload Model -->
+                    <div class="modal-body" id="file-upload-model" style="display: none;">
+                        <div id="fileuploadalert" role="alert"
+                            class="alert alert-success  alert-dismissible fade show m-1" style="display:none">
+                            </button>
+                            <div id="upload-alert" class="text-center"></div><br>
+                            <div id="file-link" class="text-center"></div>
+                        </div><br>
+                        <div class="form-group">
+                            <input type="file" id="files" /><br /><br />
+                            <input id="send" type="button" class="btn btn-primary btn-block" value="Submit">
+                        </div>
+                        <div class="text-center" id="progress-bar" style="display: none;"><progress value="0" max="100"
+                                id="progress"></progress>
+                        </div>
+                    </div>
+
+                    <!-- Ticket Request Model -->
+                    <div class="modal-body" id="ticket-request-model" style="display:none">
+                        <div id="ticketalert" role="alert" class="alert alert-success  alert-dismissible fade show m-1"
+                            style="display:none">
+                            <div id="ticket-alert" class="text-center">Your ticket has been submitted Successfully<br>
+                                Please Note down for Reference<br></div>
+                        </div>
+                        <form id="ticketform">
+                            <div class="form-group">
+                                <input type="name" class="form-control" id="ticket-name" placeholder="Name" style="text-transform:uppercase" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="ticket-number" placeholder="Phone Number"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="ticket-email" placeholder="Email Address"
+                                    readonly>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" id="ticket-message" placeholder="Message"
+                                    rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="url" class="form-control" id="ticket-url" placeholder="Attachment URL">
+                            </div>
+                            <div class="form-group">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-block"
+                                        id="ticket-submit-button">Send</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard-ticket-models">
+        <div class="modal fade" id="dashboard-ticketsearch-model" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" onclick="hidemodels()" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <img src="./assets/img/full-logo.png" class="text-center" height="70px">
+                        <h5 class="modal-title">Ticket Status</h5>
+                    </div>
+
+                    <!-- Ticket Search Model -->
+                    <div class="modal-body" id="ticket-status">
+                        <div id="ticketstatusalert" role="alert"
+                            class="alert alert-success  alert-dismissible fade show m-1" style="display:none">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="text-center"><b>Status: </b><span id="ticket-status-alert"></span></div>
+                            <div><b>Ticket ID : </b><span id="ticket-status-alert-id"></span></div>
+                            <div><b>Name : </b><span id="ticket-status-alert-name"></span></div>
+                            <div><b>Phone Number : </b><span id="ticket-status-alert-number"></span></div>
+                            <div><b>Email ID : </b><span id="ticket-status-alert-email"></span></div>
+                            <div><b>Message : </b><span id="ticket-status-alert-message"></span></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="ticket-id">
+                        </div>
+                        <div class="text-center">
+                            <input onclick="getTicketsstatus()" id="ticket-search-button" type="submit"
+                                class="btn btn-primary btn-block" value="Search Ticket Status">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-  <!-- Firebase Scripts -->
-  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <footer class="text-center text-white bg-dark p-3 hero-text" style="margin-top: 5%;">
+        &copy; 2021 | TECHWAMP Engineering College
+    </footer>
 
-  <!-- External JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script
-    src="https://cdn.jsdelivr.net/combine/npm/sweetalert2@11.3.2/dist/sweetalert2.all.min.js,npm/sweetalert2@11.3.2/dist/sweetalert2.min.js,npm/sweetalert2@11.3.2,npm/sweetalert2@11.3.2/dist/sweetalert2.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
-  <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
 
-  <!--Data Tables-->
-  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+    <!-- External JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-  <!-- Profile JS -->
-  <script src="./assets/js/main.js"></script>
-  <script src="./assets/js/dashboard.js"></script>
-  <script src="./assets/js/firebase.js"></script>
-  <script src="./assets/jsuser/profile.js"></script>
-  <script src="./assets/jsuser/sections.js"></script>
-
-  <!-- Functions JS -->
-  <script src="./assets/jsuser/my_certificates.js"></script>
-  <script src="./assets/jsuser/cstore.js"></script>
-  <script src="./assets/jsuser/ticket.js"></script>
-  <script src="./assets/jspdf/generatePDF.js"></script>
-  <script src="./assets/jspdf/pdf.js"></script>
-
+    <!-- Internal JS -->
+    <script src="./assets/js/firebase.js"></script>
+    <script src="./assets/js/login.js"></script>
+    <script src="./assets/js/user.js"></script>
+    <script src="./assets/js/ticket-form.js"></script>
+    <script src="./assets/js/fileupload.js"></script>
+    <script src="./assets/js/searchdata.js"></script>
 </body>
 
 </html>
