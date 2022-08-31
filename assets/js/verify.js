@@ -11,7 +11,20 @@ if (certificateno != "") {
     }
 }
 
-function verifyCertificate(ID = document.getElementById('cno').value) {
+function searchData(){
+    var ID = document.getElementById('cno').value;
+    if (ID != "") {
+        // Check for TWEC
+        if(ID.slice(0, 4) == "TWEC"){
+            verifyCertificate(ID);
+        }
+        else{
+            verifyStudent(ID);
+        }
+    }    
+}
+
+function verifyCertificate(ID) {
     var container = document.getElementById('verify');
     container.innerHTML = `
     <div class="center" style="text-align: center;padding-top: 10%;">
@@ -39,7 +52,7 @@ function verifyCertificate(ID = document.getElementById('cno').value) {
                                 <input type="text" class="form-control" id="cno" placeholder="Search Another Certificate">
                             </div>
                             <div class="form-group">
-                                <button type="submit" onclick="verifyCertificate()"
+                                <button type="submit" onclick="searchData()"
                                     class="btn btn-primary btn-block">Search</button>
                             </div>
                         </div>

@@ -35,7 +35,6 @@ function issueCertificate() {
             });
             updateCounter($('#CTID').val());
             updateStudentCounter($('#cRoll').val());
-            getCertificatesDetails();
             loadSelect();
             $('#certificate-form')[0].reset();
             document.getElementById("CertificateFormAlert").classList.remove("d-none");
@@ -45,6 +44,7 @@ function issueCertificate() {
                 icon: 'success',
                 title: 'Record Added Successfully.'
             })
+            getCertificatesDetails();
         }
     });
 }
@@ -228,8 +228,8 @@ function deleteCertificate(key) {
             firebase.database().ref('Students/' + roll).update({
                 No: count
             });
-            getCertificatesDetails();
             loadSelect();
+            getCertificatesDetails();
         } else if (
             result.dismiss === Swal.DismissReason.cancel
         ) {

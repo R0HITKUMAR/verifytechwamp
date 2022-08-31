@@ -27,7 +27,7 @@ function getCStoreCertificates() {
                 document.getElementById("cstore-table").innerHTML += row;
             });
         });
-        document.getElementById("total_certificates-added").innerHTML = e
+        document.getElementById("total_certificates-added").innerHTML = e-1
     });
 }
 

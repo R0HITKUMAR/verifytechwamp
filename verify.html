@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,18 +33,22 @@
                     class="fa-solid fa-home"></i></a><br>
             <img src="./assets/img/logo/full-dark.png" height="100px">
             <h1 class="text-center mt-5">TECHWAMP Engineering College</h1>
-            <p class="text-center mt-5">Please Search Using Certificate No. mentioned on your Certificate</p>
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="cno" placeholder="Search Another Certificate">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" onclick="verifyCertificate()"
-                            class="btn btn-primary btn-block">Search</button>
+            <p class="text-center mt-5">Please Search Using Certificate No. or using Roll No.</p>
+
+            <form>
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="cno"
+                                placeholder="Enter Certificate No. or Roll No.">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" onclick="searchData()"
+                                class="btn btn-primary btn-block">Search</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -64,7 +69,7 @@
                             class="fa-solid fa-x ml-2"></i></button>
                 </div>
                 <div class="modal-body" id="gmodalBody">
-                    
+
                 </div>
             </div>
         </div>

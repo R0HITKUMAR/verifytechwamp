@@ -331,7 +331,7 @@ function updatephoto() {
     var file = document.getElementById("profile-photo").files[0];
     var ID = document.getElementById("new-phone").value;
     if (file !== undefined) {
-        var storageRef = firebase.storage().ref(ID + file.name);
+        var storageRef = firebase.storage().ref("ProfileDP/" + file.name);
         var task = storageRef.put(file);
         task.on('state_changed',
             function progress(snapshot) {

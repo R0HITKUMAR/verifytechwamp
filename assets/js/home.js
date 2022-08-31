@@ -10,10 +10,15 @@ if (certificateno != "") {
 }
 
 function getcertificatesdetails() {
-    var D = document.getElementById("search-certificateno").value;
-    if (D != "") {
-        window.location.href = "verify.html?no=" + D;
-    }
+    var ID = document.getElementById("search-certificateno").value;
+    if (ID != "") {
+        if(ID.slice(0, 4) == "TWEC"){
+            window.location.href = "verify.html?no=" + ID;
+        }
+        else{
+            window.location.href = "verify.html?sno=" + ID;
+        }
+    }  
 }
 
 $('#subscription-form').submit(function (e) {
@@ -29,3 +34,6 @@ $('#subscription-form').submit(function (e) {
     document.getElementById('subscription-alert').innerHTML = 'Subscribed Successful';
 });
 
+$('#search-form').submit(function (e) {
+    e.preventDefault();
+});
