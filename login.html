@@ -36,7 +36,7 @@
         <img src="./assets/img/logo/frontImg.jpg" alt="">
         <div class="text">
           <span class="text-1">Login Now</span>
-          <span class="text-2">(TECHWAMP Engineering College)</span>
+          <span class="text-2">(TECHWAMP Engineering College)</span><br />
         </div>
       </div>
       <div class="back">
@@ -70,7 +70,15 @@
                 <input type="password" placeholder="Enter Your Password" id="lpassword">
                 <i class="far fa-eye" id="togglePassword" style="margin-left: 90%; cursor: pointer;"></i>
               </div>
-              <div class="text"><a onclick="forgotPass()" href="#">Forgot password?</a></div>
+              <div class="text">
+                <span style="float: left;">
+                  <a onclick="forgotPass()" href="#">Forgot password?</a>
+                </span>
+                <span style="float: right;">
+                  <a href="javascript:void(0)" onclick="loginadmin()">Admin</a>/
+                  <a href="javascript:void(0)" onclick="loginuser()">User</a>
+                </span>
+              </div>
               <div class="button input-box">
                 <input type="submit" onclick="login()" id="loginbtn" value="Login">
               </div>
@@ -89,7 +97,10 @@
               </div>
             </div>
           </form>
-          <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
+          <div class="text sign-up-text">
+            <span>Don't have an account? <label for="flip">Sigup now</label></span><br />
+            <span>Sample Login available next to Forgot Password</span><br />
+          </div>
         </div>
 
         <!--Signup Form-->
