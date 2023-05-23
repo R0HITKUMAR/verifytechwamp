@@ -56,10 +56,16 @@ function loginadmin() {
   login();
 }
 
-function loginuser() {
-  document.getElementById("lemail").value = "r.k2962002@gmail.com";
-  document.getElementById("lpassword").value = "User@1234";
-  login();
+function loginuser(id) {
+  if (id == 1) {
+    document.getElementById("lemail").value = "r.k2962002@gmail.com";
+    document.getElementById("lpassword").value = "User@1234";
+    login();
+  } else if (id == 2) {
+    document.getElementById("lemail").value = "lavi.19b101163@abes.ac.in";
+    document.getElementById("lpassword").value = "Lavi@1234";
+    login();
+  }
 }
 
 // Login Function
