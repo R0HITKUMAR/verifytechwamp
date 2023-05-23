@@ -98,7 +98,7 @@ function verifyCertificate(ID) {
                                 <div class="col-md-4 col-12">
                                 <label><b>Certificate Verification Link</b></label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="clink" value='https://verifytechwamp.ml?no=${Data.CID}' readonly>
+                                    <input type="text" class="form-control" id="clink" value='https://verifytechwamp.aboutrohit.in?no=${Data.CID}' readonly>
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" id="cbutton" onclick="copyText('cbutton','clink')" type="button"><i class="fa-solid fa-copy"></i></button>
                                         </div>
@@ -125,7 +125,7 @@ function verifyCertificate(ID) {
                         day: 'numeric',
                         year: 'numeric'
                     });
-                    var img = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://verifytechwamp.ml?no=${ID}`;
+                    var img = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://verifytechwamp.aboutrohit.in?no=${ID}`;
                     generatePDF(ID, Data.CDescription, img, Data.Name, Data.CRollNo, Data.BranchYear, Data.CDate, today, 3);
                 });
             });
@@ -213,7 +213,7 @@ function verifyStudent(ID) {
                             </div>
                             <label><b>Public Profile Link</b></label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="slink" value='https://verifytechwamp.ml?sno=${data.Rollno}' readonly>
+                                <input type="text" class="form-control" id="slink" value='https://verifytechwamp.aboutrohit.in?sno=${data.Rollno}' readonly>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" id="sbutton" onclick="copyText('sbutton','slink')" type="button"><i class="fa-solid fa-copy"></i></button>
                                 </div>

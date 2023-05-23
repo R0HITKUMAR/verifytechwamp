@@ -22,7 +22,7 @@ const generatePDF = async (ID, title, img, name, rollno, by, gdate, ddate, to) =
     pdfDoc.setAuthor('TECHWAMP Engineering College')
     pdfDoc.setSubject('Certificates Issued by TECHWAMP Engineering College')
     pdfDoc.setProducer('TWEC Portal')
-    pdfDoc.setCreator('TWEC (https://verifytechwamp.ml)')
+    pdfDoc.setCreator('TWEC (https://verifytechwamp.aboutrohit.in)')
 
     // Get Font & Embeed
     const fontBytes = await fetch("./assets/jspdf/engagement.ttf").then((res) =>
@@ -93,7 +93,7 @@ const generatePDF = async (ID, title, img, name, rollno, by, gdate, ddate, to) =
         font: JosephineFont,
         color: rgb(0, 0, 0),
     });
-    firstPage.drawText(`Verify at : https://verifytechwamp.ml?no=${ID}`, { // Link
+    firstPage.drawText(`Verify at : https://verifytechwamp.aboutrohit.in?no=${ID}`, { // Link
         x: 480,
         y: 15,
         size: 12,
