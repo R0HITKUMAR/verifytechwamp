@@ -1,0 +1,19 @@
+Verify TECHWAMP is a comprehensive web portal designed to facilitate certificate verification, generation, and document management with integrated cloud storage capabilities (CStore). The portal provides distinct functionalities for administrators and users, enabling seamless certificate management and verification processes.
+
+Key Features:
+• Certificate Generation and Management: Admin users can generate and manage certificates efficiently through the portal, ensuring accurate record-keeping and issuance.
+• Certificate Verification and Download: Users can verify the authenticity of certificates using unique links and download them for personal or professional use.
+• Ticket Issuance: The system allows users to issue tickets related to certificate verification or other inquiries.
+• User Certificate Upload: Users have the capability to upload their own certificates securely to the platform.
+
+Unique Aspects:
+• Unique Links: Each certificate and user profile is associated with a unique link, enhancing security and accessibility.
+• Innovative Cloud Drive Integration: The CStore feature integrates cloud storage for seamless document management and accessibility.
+
+Recognition:
+• Verify TECHWAMP was awarded the 1st Prize at Innovate Infinity - Project Day organized by the Department of Computer Science & Engineering (ABESEC), recognizing its innovation and contribution to the field of certificate management.
+
+Technologies Used:
+The project was developed using a stack of technologies including HTML, CSS, JavaScript (with jQuery), Bootstrap for responsive design, Firebase for backend services and data management, and PDF-Lib for PDF document processing.
+
+Verify TECHWAMP represents a culmination of innovative technology implementation to address real-world challenges in certificate management and verification, emphasizing usability, security, and efficiency.
